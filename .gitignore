@@ -1,5 +1,6 @@
 # Node / NPM
 /node_modules/
+/coverage/
 
 # JetBrains
 /.idea/
