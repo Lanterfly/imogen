@@ -1,4 +1,6 @@
-import {validateConfig, validateConfigJob} from "./validateConfig.js";
+import { validateConfig, validateConfigJob } from './validateConfig.js';
+
+/* eslint-disable no-undef */
 
 describe(
 	'Test Validate Config Job',

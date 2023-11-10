@@ -1,5 +1,12 @@
 {
   "extends": [
     "eslint-config-airbnb-base"
-  ]
+  ],
+  "rules": {
+    "import/extensions": ["error", "always"],
+    "indent": ["error", "tab"],
+    "no-console": "off",
+    "no-lonely-if": "off",
+    "no-tabs": "off"
+  }
 }

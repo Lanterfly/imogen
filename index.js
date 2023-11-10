@@ -1,13 +1,13 @@
 import fs from 'fs';
 import { exec } from 'child_process';
 import { program } from 'commander';
-import schedule from "node-schedule";
+import schedule from 'node-schedule';
 
-import {validateConfig} from "./src/validateConfig.js";
+import { validateConfig } from './src/validateConfig.js';
 
 program
-    .name('imogen')
-    .version("0.1.0");
+	.name('imogen')
+	.version('0.1.0');
 program.command('run')
 	.description('Run imogen job scheduler.')
 	.option('-c, --config <string>', 'Config file', 'test.config.json')
@@ -22,7 +22,7 @@ program.command('run')
 
 			// Validate Config
 			validateConfig(config);
-			console.log("The config file is valid.");
+			console.log('The config file is valid.');
 
 			// Schedule Jobs
 			config.jobs.forEach(
@@ -34,7 +34,7 @@ program.command('run')
 							job.command,
 							(err, stdout, stderr) => {
 								if (err) {
-									console.error(`Failed to run job: ${err}`)
+									console.error(`Failed to run job: ${err}`);
 								}
 								if (stdout) {
 									console.log(`Execution STDOUT:\n${stdout}`);
@@ -45,7 +45,7 @@ program.command('run')
 								console.log(`Finished execution of job "${job.command}".`);
 							},
 						);
-					}
+					},
 				),
 			);
 		},
@@ -64,7 +64,7 @@ program.command('validate')
 
 			// Validate Config
 			validateConfig(config);
-			console.log("The config file is valid.");
+			console.log('The config file is valid.');
 		},
 	);
 

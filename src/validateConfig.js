@@ -3,7 +3,7 @@ import parser from 'cron-parser';
 export const validateConfigJob = (job, index) => {
 	if (job.time === undefined) {
 		throw new Error(`No 'time' field in the configuration for job[${index}].`);
-	} else if (typeof job.time !== "string") {
+	} else if (typeof job.time !== 'string') {
 		throw new Error(`'time' field must be a cron string for job[${index}].`);
 	} else {
 		try {
@@ -27,8 +27,8 @@ export const validateConfig = (config) => {
 				config.jobs.forEach(
 					(job, index) => {
 						validateConfigJob(job, index);
-					}
-				)
+					},
+				);
 			}
 		}
 	}
