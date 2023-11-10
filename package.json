@@ -9,6 +9,9 @@
   },
   "author": "Ethan Raymond",
   "license": "ISC",
+  "devDependencies": {
+    "jest": "29.7.0"
+  },
   "dependencies": {
     "commander": "11.1.0",
     "cron-parser": "4.9.0"
