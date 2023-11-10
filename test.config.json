@@ -2,7 +2,11 @@
   "jobs": [
     {
       "time": "* * * * * *",
-      "command": "echo \"Test\""
+      "command": "echo \"Test #1\""
+    },
+    {
+      "time": "*/2 * * * * *",
+      "command": "echo \"Test #2\""
     }
   ]
 }
