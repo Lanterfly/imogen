@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 import fs from 'fs';
 import { exec } from 'child_process';
 import { program } from 'commander';
