@@ -20,5 +20,12 @@
     "commander": "11.1.0",
     "cron-parser": "4.9.0",
     "node-schedule": "2.1.1"
-  }
+  },
+  "bin": {
+    "imogen": "index.js"
+  },
+  "files": [
+    "index.js",
+    "src/*.js"
+  ]
 }
