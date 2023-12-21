@@ -31,6 +31,23 @@ describe(
 				);
 			},
 		);
+		describe(
+			'Test Concurrent',
+			() => {
+				test(
+					'No Concurrent',
+					() => expect(() => validateConfigJob({ time: '* * * * *' })).not.toThrow(),
+				);
+				test(
+					'Invalid Concurrent',
+					() => expect(() => validateConfigJob({ time: '* * * * *', concurrent: 'true' })).toThrow(),
+				);
+				test(
+					'Valid Concurrent',
+					() => expect(() => validateConfigJob({ time: '* * * * *', concurrent: true })).not.toThrow(),
+				);
+			},
+		);
 	},
 );
 
