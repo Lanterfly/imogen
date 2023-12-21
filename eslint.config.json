@@ -6,6 +6,7 @@
     "import/extensions": ["error", "always"],
     "indent": ["error", "tab"],
     "no-console": "off",
+    "linebreak-style": "off",
     "no-lonely-if": "off",
     "no-tabs": "off"
   }
