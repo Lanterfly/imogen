@@ -1,11 +1,8 @@
 #! /usr/bin/env node
 
-import fs from 'fs';
-import { exec } from 'child_process';
 import { program } from 'commander';
-import schedule from 'node-schedule';
 
-import { validateConfig } from './src/validateConfig.js';
+import {run, validate} from './src/CLI.js';
 
 program
 	.name('imogen')
@@ -13,61 +10,10 @@ program
 program.command('run')
 	.description('Run imogen job scheduler.')
 	.option('-c, --config <string>', 'Config file', 'test.config.json')
-	.action(
-		(str, options) => {
-			// Load Options
-			const opts = options.opts();
-
-			// Load config
-			let config = fs.readFileSync(opts.config);
-			config = JSON.parse(config);
-
-			// Validate Config
-			validateConfig(config);
-			console.log('The config file is valid.');
-
-			// Schedule Jobs
-			config.jobs.forEach(
-				(job) => schedule.scheduleJob(
-					job.time,
-					async () => {
-						console.log(`Starting execution of job "${job.command}".`);
-						exec(
-							job.command,
-							(err, stdout, stderr) => {
-								if (err) {
-									console.error(`Failed to run job: ${err}`);
-								}
-								if (stdout) {
-									console.log(`Execution STDOUT:\n${stdout}`);
-								}
-								if (stderr) {
-									console.log(`Execution STDERR:\n${stderr}`);
-								}
-								console.log(`Finished execution of job "${job.command}".`);
-							},
-						);
-					},
-				),
-			);
-		},
-	);
+	.action((str, options) => run(str, options));
 program.command('validate')
 	.description('Validate a configuration file.')
 	.option('-c, --config <string>', 'Config file', 'test.config.json')
-	.action(
-		(str, options) => {
-			// Load Options
-			const opts = options.opts();
-
-			// Load config
-			let config = fs.readFileSync(opts.config);
-			config = JSON.parse(config);
-
-			// Validate Config
-			validateConfig(config);
-			console.log('The config file is valid.');
-		},
-	);
+	.action((str, options) => validate(str, options));
 
 program.parse();
