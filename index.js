@@ -9,7 +9,7 @@ import { validateConfig } from './src/validateConfig.js';
 
 program
 	.name('imogen')
-	.version('0.1.2');
+	.version('0.2.0');
 program.command('run')
 	.description('Run imogen job scheduler.')
 	.option('-c, --config <string>', 'Config file', 'test.config.json')
