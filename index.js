@@ -2,7 +2,7 @@
 
 import { program } from 'commander';
 
-import { run, validate } from './src/CLI.js';
+import {run, validate} from './src/CLI.js';
 
 program
 	.name('imogen')

@@ -1,4 +1,4 @@
-import { executeJob, run, scheduleJob } from './CLI.js';
+import {executeJob, run, scheduleJob} from "./CLI.js";
 
 /* eslint-disable no-undef */
 
@@ -6,8 +6,8 @@ test(
 	'executeJob()',
 	() => expect(
 		() => executeJob({
-			command: 'dir',
-		}),
+			"command": "dir"
+		})
 	).not.toThrow(),
 );
 
@@ -15,8 +15,8 @@ test(
 	'scheduleJob()',
 	() => expect(
 		() => scheduleJob({
-			command: 'dir',
-		}),
+			"command": "dir"
+		})
 	).not.toThrow(),
 );
 
@@ -27,7 +27,7 @@ test(
 			undefined,
 			{
 				opts: () => ({
-					config: './test.config.json',
+					config: './test.config.json'
 				}),
 			},
 		),
