@@ -4,6 +4,7 @@ import fs from 'fs';
 import { exec } from 'child_process';
 import { program } from 'commander';
 import schedule from 'node-schedule';
+import makeLogger from 'pino';
 
 import { validateConfig } from './src/validateConfig.js';
 
@@ -15,6 +16,9 @@ program.command('run')
 	.option('-c, --config <string>', 'Config file', 'test.config.json')
 	.action(
 		(str, options) => {
+			// Make Logger
+			const logger = makeLogger();
+
 			// Load Options
 			const opts = options.opts();
 
@@ -23,8 +27,9 @@ program.command('run')
 			config = JSON.parse(config);
 
 			// Validate Config
+			logger.info('Validating the config file...');
 			validateConfig(config);
-			console.log('The config file is valid.');
+			logger.info('Validated the config file.');
 
 			// Schedule Jobs
 			config.jobs.forEach(
@@ -35,21 +40,21 @@ program.command('run')
 						job.time,
 						async () => {
 							if (!(isRunning && job.concurrent)) {
-								console.log(`Starting execution of job "${job.command}".`);
+								logger.info(`Starting execution of job "${job.command}".`);
 								isRunning = true;
 								exec(
 									job.command,
 									(err, stdout, stderr) => {
 										if (err) {
-											console.error(`Failed to run job: ${err}`);
+											logger.error(`Failed to run job: ${err}`);
 										}
 										if (stdout) {
-											console.log(`Execution STDOUT:\n${stdout}`);
+											logger.info(`Execution STDOUT:\n${stdout}`);
 										}
 										if (stderr) {
-											console.log(`Execution STDERR:\n${stderr}`);
+											logger.info(`Execution STDERR:\n${stderr}`);
 										}
-										console.log(`Finished execution of job "${job.command}".`);
+										logger.info(`Finished execution of job "${job.command}".`);
 									},
 								);
 								isRunning = false;
@@ -65,6 +70,9 @@ program.command('validate')
 	.option('-c, --config <string>', 'Config file', 'test.config.json')
 	.action(
 		(str, options) => {
+			// Make Logger
+			const logger = makeLogger();
+
 			// Load Options
 			const opts = options.opts();
 
@@ -73,8 +81,9 @@ program.command('validate')
 			config = JSON.parse(config);
 
 			// Validate Config
+			logger.info('Validating the config file...');
 			validateConfig(config);
-			console.log('The config file is valid.');
+			logger.info('Validated the config file.');
 		},
 	);
 
