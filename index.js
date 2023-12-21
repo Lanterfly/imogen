@@ -28,27 +28,35 @@ program.command('run')
 
 			// Schedule Jobs
 			config.jobs.forEach(
-				(job) => schedule.scheduleJob(
-					job.time,
-					async () => {
-						console.log(`Starting execution of job "${job.command}".`);
-						exec(
-							job.command,
-							(err, stdout, stderr) => {
-								if (err) {
-									console.error(`Failed to run job: ${err}`);
-								}
-								if (stdout) {
-									console.log(`Execution STDOUT:\n${stdout}`);
-								}
-								if (stderr) {
-									console.log(`Execution STDERR:\n${stderr}`);
-								}
-								console.log(`Finished execution of job "${job.command}".`);
-							},
-						);
-					},
-				),
+				(job) => {
+					let isRunning = false;
+
+					schedule.scheduleJob(
+						job.time,
+						async () => {
+							if (!(isRunning && job.concurrent)) {
+								console.log(`Starting execution of job "${job.command}".`);
+								isRunning = true;
+								exec(
+									job.command,
+									(err, stdout, stderr) => {
+										if (err) {
+											console.error(`Failed to run job: ${err}`);
+										}
+										if (stdout) {
+											console.log(`Execution STDOUT:\n${stdout}`);
+										}
+										if (stderr) {
+											console.log(`Execution STDERR:\n${stderr}`);
+										}
+										console.log(`Finished execution of job "${job.command}".`);
+									},
+								);
+								isRunning = false;
+							}
+						},
+					);
+				},
 			);
 		},
 	);
