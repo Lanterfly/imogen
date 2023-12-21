@@ -12,8 +12,9 @@ Imogen is a Node based job scheduler build on top of [Node Schedule](https://www
 
 ## Configuration
 
-| Field           | Description | Is Required?   |
-|-----------------|-------------|----------------|
-| jobs            |             | Yes            |
-| jobs[#].time    |             | Yes            |
-| jobs[#].command |             | Yes            |
+| Field              | Type    | Description                                                                                                                                                                                                      | Is Required? | Default |
+|--------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|---------|
+| jobs               |         |                                                                                                                                                                                                                  | Yes          |         |
+| jobs[#].time       | String  |                                                                                                                                                                                                                  | Yes          |         |
+| jobs[#].command    | String  |                                                                                                                                                                                                                  | Yes          |         |
+| jobs[#].concurrent | Boolean | Flag for whether multiple instances of job can be executed at once. If `true`, multiple instances can run concurrently. If `false`, the next job will not be run until the previous instance has been completed. | No           | True    |
