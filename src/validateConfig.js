@@ -13,6 +13,12 @@ export const validateConfigJob = (job, index) => {
 		}
 	}
 
+	if (job.command === undefined) {
+		throw new Error(`No 'command' field in the configuration for job[${index}].`);
+	} else if (typeof job.command !== 'string') {
+		throw new Error(`'command' field must be a cron string for job[${index}].`);
+	}
+
 	if (job.concurrent !== undefined) {
 		if (typeof job.concurrent !== 'boolean') {
 			throw new Error(`'concurrent' field must be a boolean for job[${index}].`);

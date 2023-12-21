@@ -10,24 +10,41 @@ describe(
 			() => {
 				test(
 					'No Time',
-					() => expect(() => validateConfigJob({ time: undefined })).toThrow(),
+					() => expect(() => validateConfigJob({ time: undefined, command: 'ls' })).toThrow(),
 				);
 				test(
 					'Invalid Time Type',
-					() => expect(() => validateConfigJob({ time: 1 })).toThrow(),
+					() => expect(() => validateConfigJob({ time: 1, command: 'ls' })).toThrow(),
 				);
 				describe(
 					'Time String',
 					() => {
 						test(
 							'Invalid cron string',
-							() => expect(() => validateConfigJob({ time: 'word' })).toThrow(),
+							() => expect(() => validateConfigJob({ time: 'word', command: 'ls' })).toThrow(),
 						);
 						test(
 							'Valid cron string',
-							() => expect(() => validateConfigJob({ time: '* * * * *' })).not.toThrow(),
+							() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls' })).not.toThrow(),
 						);
 					},
+				);
+			},
+		);
+		describe(
+			'Test Command',
+			() => {
+				test(
+					'No Command',
+					() => expect(() => validateConfigJob({ time: '* * * * *' })).toThrow(),
+				);
+				test(
+					'Invalid Command Type',
+					() => expect(() => validateConfigJob({ time: '* * * * *', command: 1 })).toThrow(),
+				);
+				test(
+					'Invalid Command Type',
+					() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls' })).not.toThrow(),
 				);
 			},
 		);
@@ -36,15 +53,15 @@ describe(
 			() => {
 				test(
 					'No Concurrent',
-					() => expect(() => validateConfigJob({ time: '* * * * *' })).not.toThrow(),
+					() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls' })).not.toThrow(),
 				);
 				test(
 					'Invalid Concurrent',
-					() => expect(() => validateConfigJob({ time: '* * * * *', concurrent: 'true' })).toThrow(),
+					() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls', concurrent: 'true' })).toThrow(),
 				);
 				test(
 					'Valid Concurrent',
-					() => expect(() => validateConfigJob({ time: '* * * * *', concurrent: true })).not.toThrow(),
+					() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls', concurrent: true })).not.toThrow(),
 				);
 			},
 		);
@@ -77,7 +94,7 @@ describe(
 								);
 								test(
 									'Not Empty Array Jobs Field',
-									() => expect(() => validateConfig({ jobs: [{ time: '* * * * *' }] })).not.toThrow(),
+									() => expect(() => validateConfig({ jobs: [{ time: '* * * * *', command: 'ls' }] })).not.toThrow(),
 								);
 							},
 						);
