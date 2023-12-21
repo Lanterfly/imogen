@@ -1,7 +1,7 @@
-import fs from "fs";
-import {validateConfig} from "./config/ValidateConfig.js";
-import schedule from "node-schedule";
-import {execSync} from "child_process";
+import fs from 'fs';
+import schedule from 'node-schedule';
+import { execSync } from 'child_process';
+import { validateConfig } from './config/ValidateConfig.js';
 
 export const executeJob = (job) => {
 	console.log(`Starting execution of job "${job.command}".`);
