@@ -7,11 +7,6 @@
     {
       "time": "*/2 * * * * *",
       "command": "echo \"Test #2\""
-    },
-    {
-      "time": "*/2 * * * * *",
-      "command": "sleep 5 && echo \"Test #3\"",
-      "concurrent": false
     }
   ]
 }
