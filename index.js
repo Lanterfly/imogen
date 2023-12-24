@@ -4,7 +4,7 @@ import fs from 'fs';
 import { exec } from 'child_process';
 import { program } from 'commander';
 import schedule from 'node-schedule';
-import makeLogger from 'pino';
+import pino from 'pino';
 
 import { validateConfig } from './src/validateConfig.js';
 
@@ -17,7 +17,19 @@ program.command('run')
 	.action(
 		(str, options) => {
 			// Make Logger
-			const logger = makeLogger();
+			const fileTransport = pino.transport({
+				targets: [
+					{
+						target: 'pino/file',
+						options: { destination: `imogen.log` },
+					},
+					{
+						target: 'pino-pretty',
+						options: {},
+					},
+				],
+			});
+			const logger = pino({}, fileTransport);
 
 			// Load Options
 			const opts = options.opts();
