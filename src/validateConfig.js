@@ -19,9 +19,9 @@ export const validateConfigJob = (job, index) => {
 		throw new Error(`'command' field must be a cron string for job[${index}].`);
 	}
 
-	if (job.concurrent !== undefined) {
-		if (typeof job.concurrent !== 'boolean') {
-			throw new Error(`'concurrent' field must be a boolean for job[${index}].`);
+	if (job.simultaneous !== undefined) {
+		if (typeof job.simultaneous !== 'boolean') {
+			throw new Error(`'simultaneous' field must be a boolean for job[${index}].`);
 		}
 	}
 };

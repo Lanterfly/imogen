@@ -39,7 +39,7 @@ program.command('run')
 					schedule.scheduleJob(
 						job.time,
 						async () => {
-							if (!(isRunning && job.concurrent)) {
+							if (!(isRunning && job.simultaneous)) {
 								logger.info(`Starting execution of job "${job.command}".`);
 								isRunning = true;
 								exec(
