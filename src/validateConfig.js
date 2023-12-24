@@ -1,6 +1,13 @@
 import parser from 'cron-parser';
 
 export const validateConfigJob = (job, index) => {
+	// Validate "name"
+	if (job.name !== undefined) {
+		if (typeof job.name !== 'string') {
+			throw new Error(`'name' field must be a string for job[${index}].`);
+		}
+	}
+
 	if (job.time === undefined) {
 		throw new Error(`No 'time' field in the configuration for job[${index}].`);
 	} else if (typeof job.time !== 'string') {
