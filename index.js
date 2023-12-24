@@ -40,7 +40,11 @@ program.command('run')
 						job.time,
 						async () => {
 							if (!(isRunning && job.concurrent)) {
-								logger.info(`Starting execution of job "${job.command}".`);
+								if (job.name !== undefined) {
+									logger.info(`Starting execution of job "${job.name}".`);
+								} else {
+									logger.info(`Starting execution of job "${job.command}".`);
+								}
 								isRunning = true;
 								exec(
 									job.command,
@@ -54,7 +58,11 @@ program.command('run')
 										if (stderr) {
 											logger.info(`Execution STDERR:\n${stderr}`);
 										}
-										logger.info(`Finished execution of job "${job.command}".`);
+										if (job.name !== undefined) {
+											logger.info(`Finished execution of job "${job.name}".`);
+										} else {
+											logger.info(`Finished execution of job "${job.command}".`);
+										}
 									},
 								);
 								isRunning = false;

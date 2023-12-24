@@ -6,6 +6,23 @@ describe(
 	'Test Validate Config Job',
 	() => {
 		describe(
+			'Test Name',
+			() => {
+				test(
+					'No Name',
+					() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls' })).not.toThrow(),
+				);
+				test(
+					'Invalid Name',
+					() => expect(() => validateConfigJob({ name: 1, time: '* * * * *', command: 'ls' })).toThrow(),
+				);
+				test(
+					'Valid Name',
+					() => expect(() => validateConfigJob({ name: 'Name', time: '* * * * *', command: 'ls' })).not.toThrow(),
+				);
+			},
+		);
+		describe(
 			'Test Time',
 			() => {
 				test(
