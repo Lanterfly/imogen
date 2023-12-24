@@ -18,7 +18,7 @@ describe(
 				);
 				test(
 					'Valid Name',
-					() => expect(() => validateConfigJob({ name: "Name", time: '* * * * *', command: 'ls' })).not.toThrow(),
+					() => expect(() => validateConfigJob({ name: 'Name', time: '* * * * *', command: 'ls' })).not.toThrow(),
 				);
 			},
 		);
