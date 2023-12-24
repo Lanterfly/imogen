@@ -4,3 +4,6 @@
 
 # JetBrains
 /.idea/
+
+# Development Data
+/imogen.log
