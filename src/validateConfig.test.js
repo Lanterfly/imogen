@@ -66,19 +66,19 @@ describe(
 			},
 		);
 		describe(
-			'Test Concurrent',
+			'Test simultaneous',
 			() => {
 				test(
-					'No Concurrent',
+					'No simultaneous',
 					() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls' })).not.toThrow(),
 				);
 				test(
-					'Invalid Concurrent',
-					() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls', concurrent: 'true' })).toThrow(),
+					'Invalid simultaneous',
+					() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls', simultaneous: 'true' })).toThrow(),
 				);
 				test(
-					'Valid Concurrent',
-					() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls', concurrent: true })).not.toThrow(),
+					'Valid simultaneous',
+					() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls', simultaneous: true })).not.toThrow(),
 				);
 			},
 		);
