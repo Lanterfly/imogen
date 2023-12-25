@@ -8,7 +8,7 @@ on:
     types: [created]
 
 jobs:
-  publish-npm-package:
+  publish-npm:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -20,17 +20,3 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-  build-docker-images:
-    runs-on: ubuntu-latest
-    needs: publish-npm-package
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build the Docker Images
-        run: bash docker/build.sh
-  push-docker-images:
-    runs-on: ubuntu-latest
-    needs: build-docker-images
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build the Docker Images
-        run: bash docker/build.sh
