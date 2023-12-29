@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "licenses": "Apache-2.0",
   "scripts": {
     "test": "jest",
     "lint": "eslint --config eslint.config.json **/*.js"
