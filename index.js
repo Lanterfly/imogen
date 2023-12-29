@@ -5,7 +5,7 @@ import { exec } from 'child_process';
 import { program } from 'commander';
 import schedule from 'node-schedule';
 import pino from 'pino';
-import {DateTime} from "luxon";
+import { DateTime } from 'luxon';
 
 import { validateConfig } from './src/validateConfig.js';
 
@@ -26,7 +26,7 @@ program.command('run')
 					directory: 'records',
 					writeStdOut: false,
 					writeStdErr: false,
-				}
+				},
 			};
 
 			// Load config
@@ -88,9 +88,9 @@ program.command('run')
 													stdout || '',
 													(error) => {
 														if (error) {
-															logger.error(`Failed to write STDOUT file for job '${job.name}': ` + error)
+															logger.error(`Failed to write STDOUT file for job '${job.name}': ${error}`);
 														}
-													}
+													},
 												);
 											}
 											if (config.record.writeStdErr) {
@@ -99,9 +99,9 @@ program.command('run')
 													stderr || '',
 													(error) => {
 														if (error) {
-															logger.error(`Failed to write STDERR file for job '${job.name}': ` + error)
+															logger.error(`Failed to write STDERR file for job '${job.name}': ${error}`);
 														}
-													}
+													},
 												);
 											}
 										}
