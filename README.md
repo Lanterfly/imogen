@@ -13,6 +13,24 @@ Imogen is a Node based job scheduler build on top of [Node Schedule](https://www
 
 ## Configuration
 
+### Sample Configuration File
+
+```json
+{
+  "jobs": [
+    {
+      "name": "job-1",
+      "time": "* * * * * *",
+      "command": "ls"
+    }
+  ]
+}
+```
+
+### Configuration API
+
+A configuration is a json file with the following fields:
+
 | Field              | Type    | Description                                                                                                                                                                                                      | Is Required? | Default |
 |--------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|---------|
 | jobs               |         |                                                                                                                                                                                                                  | Yes          |         |
