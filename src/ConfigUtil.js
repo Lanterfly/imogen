@@ -1,5 +1,5 @@
 import parser from 'cron-parser';
-import fs from "fs";
+import fs from 'fs';
 
 export const loadConfig = (options) => {
 	// Load Options
@@ -15,7 +15,7 @@ export const loadConfig = (options) => {
 	};
 
 	// Load config
-	let config = fs.readFileSync(opts.config);
+	const config = fs.readFileSync(opts.config);
 	return {
 		...DEFAULT_CONFIG,
 		...JSON.parse(config),

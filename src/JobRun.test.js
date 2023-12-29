@@ -1,5 +1,7 @@
-import jobRun, {onCompletedJob, runJob} from "./JobRun.js";
-import {DateTime} from "luxon";
+import { DateTime } from 'luxon';
+import jobRun, { onCompletedJob, runJob } from './JobRun.js';
+
+/* eslint-disable no-undef */
 
 const MOCK_LOGGER = {
 	info: () => {},
@@ -16,12 +18,12 @@ describe(
 				'stdout',
 				undefined,
 				{
-					"record": {}
+					record: {},
 				},
 				MOCK_LOGGER,
 				{ name: 'job' },
 				DateTime.now(),
-			)).not.toThrow()
+			)).not.toThrow(),
 		);
 		test(
 			'With STDERR',
@@ -30,12 +32,12 @@ describe(
 				undefined,
 				'stderr',
 				{
-					"record": {}
+					record: {},
 				},
 				MOCK_LOGGER,
 				{ name: 'job' },
 				DateTime.now(),
-			)).not.toThrow()
+			)).not.toThrow(),
 		);
 		test(
 			'Failed Run',
@@ -44,12 +46,12 @@ describe(
 				undefined,
 				undefined,
 				{
-					"record": {}
+					record: {},
 				},
 				MOCK_LOGGER,
 				{ name: 'job' },
 				DateTime.now(),
-			)).not.toThrow()
+			)).not.toThrow(),
 		);
 		describe(
 			'Successful Run',
@@ -61,14 +63,14 @@ describe(
 						'stdout',
 						undefined,
 						{
-							"record": {
-								'writeStdOut': true,
-							}
+							record: {
+								writeStdOut: true,
+							},
 						},
 						MOCK_LOGGER,
 						{ name: 'job' },
 						DateTime.now(),
-					)).not.toThrow()
+					)).not.toThrow(),
 				);
 				test(
 					'Write STDERR',
@@ -77,14 +79,14 @@ describe(
 						undefined,
 						'stderr',
 						{
-							"record": {
-								'writeStdErr': true,
-							}
+							record: {
+								writeStdErr: true,
+							},
 						},
 						MOCK_LOGGER,
 						{ name: 'job' },
 						DateTime.now(),
-					)).not.toThrow()
+					)).not.toThrow(),
 				);
 			},
 		);
@@ -98,8 +100,8 @@ test(
 		MOCK_LOGGER,
 		{
 			name: 'name',
-			command: '* * * * *'
-		}
+			command: '* * * * *',
+		},
 	)).not.toThrow(),
 );
 
@@ -111,8 +113,8 @@ test(
 			{
 				opts: () => ({
 					config: 'test.config.json',
-				})
-			}
-		)
+				}),
+			},
+		),
 	).not.toThrow(),
 );

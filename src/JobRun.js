@@ -1,10 +1,10 @@
-import fs from "fs";
-import pino from "pino";
-import schedule from "node-schedule";
-import {DateTime} from "luxon";
-import {exec} from "child_process";
+import fs from 'fs';
+import pino from 'pino';
+import schedule from 'node-schedule';
+import { DateTime } from 'luxon';
+import { exec } from 'child_process';
 
-import {loadConfig, validateConfig} from "./ConfigUtil.js";
+import { loadConfig, validateConfig } from './ConfigUtil.js';
 
 const RUNNING_STATUSES = {};
 

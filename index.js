@@ -2,8 +2,8 @@
 
 import { program } from 'commander';
 
-import jobValidate from "./src/JobValidate.js";
-import jobRun from "./src/JobRun.js";
+import jobValidate from './src/JobValidate.js';
+import jobRun from './src/JobRun.js';
 
 program
 	.name('imogen')
