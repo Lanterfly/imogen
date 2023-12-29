@@ -9,5 +9,9 @@
       "time": "*/2 * * * * *",
       "command": "echo \"Test #2\""
     }
-  ]
+  ],
+  "pino": {
+    "options": {},
+    "destination": {}
+  }
 }
