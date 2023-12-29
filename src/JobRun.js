@@ -8,7 +8,7 @@ import {loadConfig, validateConfig} from "./ConfigUtil.js";
 
 const RUNNING_STATUSES = {};
 
-const onCompletedJob = (err, stdout, stderr) => {
+export const onCompletedJob = (err, stdout, stderr, config, logger, job, startTime) => {
 	// Log STDOUT and STDERR
 	if (stdout) {
 		logger.info(`Execution STDOUT:\n${stdout}`);
@@ -54,7 +54,7 @@ const onCompletedJob = (err, stdout, stderr) => {
 	}
 };
 
-const runJob = async (logger, job) => {
+const runJob = async (config, logger, job) => {
 	const startTime = DateTime.now();
 
 	if (!(RUNNING_STATUSES[job.name] && job.simultaneous)) {
@@ -66,19 +66,19 @@ const runJob = async (logger, job) => {
 		RUNNING_STATUSES[job.name] = true;
 		exec(
 			job.command,
-			onCompletedJob,
+			(err, stdout, stderr) => onCompletedJob(err, stdout, stderr, config, logger, job, startTime),
 		);
 		RUNNING_STATUSES[job.name] = false;
 	}
 };
 
-const scheduleJob = (logger, job) => {
+const scheduleJob = (config, logger, job) => {
 	RUNNING_STATUSES[job.name] = false;
 
 	logger.info(`Scheduling job '${job.name}'. Running on schedule: '${job.time}'`);
 	schedule.scheduleJob(
 		job.time,
-		runJob,
+		() => runJob(config, logger, job),
 	);
 };
 
