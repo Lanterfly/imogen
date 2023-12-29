@@ -82,11 +82,15 @@ describe(
 				);
 				test(
 					'Invalid simultaneous',
-					() => expect(() => validateConfigJob({ name: 'name', time: '* * * * *', command: 'ls', simultaneous: 'true' })).toThrow(),
+					() => expect(() => validateConfigJob({
+						name: 'name', time: '* * * * *', command: 'ls', simultaneous: 'true',
+					})).toThrow(),
 				);
 				test(
 					'Valid simultaneous',
-					() => expect(() => validateConfigJob({ name: 'name', time: '* * * * *', command: 'ls', simultaneous: true })).not.toThrow(),
+					() => expect(() => validateConfigJob({
+						name: 'name', time: '* * * * *', command: 'ls', simultaneous: true,
+					})).not.toThrow(),
 				);
 			},
 		);

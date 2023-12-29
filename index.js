@@ -21,7 +21,7 @@ program.command('run')
 				targets: [
 					{
 						target: 'pino/file',
-						options: { destination: `imogen.log` },
+						options: { destination: 'imogen.log' },
 					},
 					{
 						target: 'pino-pretty',
