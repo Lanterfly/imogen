@@ -33,17 +33,17 @@ export const validateConfigJob = (job, index) => {
 	}
 };
 
-export const validateConfig = (config) => {
-	if (config.jobs === undefined) {
+export const validateConfigJobs = (jobs) => {
+	if (jobs === undefined) {
 		throw new Error('No \'jobs\' in the configuration.');
 	} else {
-		if (!Array.isArray(config.jobs)) {
+		if (!Array.isArray(jobs)) {
 			throw new Error('The \'jobs\' field must be a json array.');
 		} else {
-			if (config.jobs.length === 0) {
+			if (jobs.length === 0) {
 				throw new Error('The \'jobs\' field must be a json array with at least one entry.');
 			} else {
-				config.jobs.forEach(
+				jobs.forEach(
 					(job, index) => {
 						validateConfigJob(job, index);
 					},
@@ -51,4 +51,14 @@ export const validateConfig = (config) => {
 			}
 		}
 	}
+};
+
+export const validateConfig = (config) => {
+	if (config === undefined) {
+		throw new Error('No config given.');
+	} else if (typeof config !== 'object') {
+		throw new Error('The config was no an object.');
+	}
+
+	validateConfigJobs(config.jobs);
 };
