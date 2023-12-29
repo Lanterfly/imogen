@@ -21,7 +21,7 @@ program.command('run')
 				targets: [
 					{
 						target: 'pino/file',
-						options: { destination: `imogen.log` },
+						options: { destination: 'imogen.log' },
 					},
 					{
 						target: 'pino-pretty',
@@ -92,7 +92,7 @@ program.command('validate')
 	.action(
 		(str, options) => {
 			// Make Logger
-			const logger = makeLogger();
+			const logger = pino();
 
 			// Load Options
 			const opts = options.opts();
