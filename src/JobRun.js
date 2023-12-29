@@ -4,27 +4,11 @@ import schedule from "node-schedule";
 import {DateTime} from "luxon";
 import {exec} from "child_process";
 
-import {validateConfig} from "./ConfigUtil.js";
+import {loadConfig, validateConfig} from "./ConfigUtil.js";
 
 export default (str, options) => {
-	// Load Options
-	const opts = options.opts();
-
-	// Set Default Config
-	const DEFAULT_CONFIG = {
-		record: {
-			directory: 'records',
-			writeStdOut: false,
-			writeStdErr: false,
-		},
-	};
-
-	// Load config
-	let config = fs.readFileSync(opts.config);
-	config = {
-		...DEFAULT_CONFIG,
-		...JSON.parse(config),
-	};
+	// Load Config
+	const config = loadConfig(options.opts());
 
 	// Validate Config
 	validateConfig(config);
