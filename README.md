@@ -8,7 +8,8 @@ Imogen is a Node based job scheduler build on top of [Node Schedule](https://www
 
 1. Install the package `@lanternfly/imogen` globally using `npm install -g @lanternfly/imogen`.
 2. Create a configuration file. See the **Configuration** section for more details.
-3. Run `imogen --config=<path to config file>`.
+3. Run `imogen validate --config=<path to config file>` to validate the configuration file. See below for more information on configuration files.
+4. Run `imogen run --config=<path to config file>` to run the job scheduler.
 
 ## Configuration
 
