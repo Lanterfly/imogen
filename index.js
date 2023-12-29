@@ -91,7 +91,7 @@ program.command('validate')
 	.action(
 		(str, options) => {
 			// Make Logger
-			const logger = makeLogger();
+			const logger = pino();
 
 			// Load Options
 			const opts = options.opts();
