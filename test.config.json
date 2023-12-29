@@ -10,6 +10,11 @@
       "command": "echo \"Test #2\""
     }
   ],
+  "pino": {
+    "options": {
+      "level": "debug"
+    }
+  },
   "record": {
     "directory": "records",
     "writeStdOut": true,

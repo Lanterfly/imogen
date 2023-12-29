@@ -1,9 +1,16 @@
-import { validateConfig, validateConfigJob } from './validateConfig.js';
+import {
+	validateConfig,
+	validateConfigJob,
+	validateConfigJobs,
+	validateConfigPino,
+	validateConfigPinoDestination,
+	validateConfigPinoOptions,
+} from './validateConfig.js';
 
 /* eslint-disable no-undef */
 
 describe(
-	'Test Validate Config Job',
+	'validateConfigJob()',
 	() => {
 		describe(
 			'Test Name',
@@ -86,38 +93,101 @@ describe(
 );
 
 describe(
-	'Test Validate Config',
+	'validateConfigJobs()',
 	() => {
+		test(
+			'No Jobs Field',
+			() => expect(() => validateConfigJobs()).toThrow(),
+		);
 		describe(
-			'Test Jobs Field',
+			'With Jobs Field',
 			() => {
 				test(
-					'No Jobs Field',
-					() => expect(() => validateConfig({ jobs: undefined })).toThrow(),
+					'Not Array Jobs Field',
+					() => expect(() => validateConfigJobs('test')).toThrow(),
 				);
 				describe(
-					'With Jobs Field',
+					'Array Jobs Field',
 					() => {
 						test(
-							'Not Array Jobs Field',
-							() => expect(() => validateConfig({ jobs: 'test' })).toThrow(),
+							'Empty Array Jobs Field',
+							() => expect(() => validateConfigJobs([])).toThrow(),
 						);
-						describe(
-							'Array Jobs Field',
-							() => {
-								test(
-									'Empty Array Jobs Field',
-									() => expect(() => validateConfig({ jobs: [] })).toThrow(),
-								);
-								test(
-									'Not Empty Array Jobs Field',
-									() => expect(() => validateConfig({ jobs: [{ time: '* * * * *', command: 'ls' }] })).not.toThrow(),
-								);
-							},
+						test(
+							'Not Empty Array Jobs Field',
+							() => expect(() => validateConfigJobs([{ time: '* * * * *', command: 'ls' }])).not.toThrow(),
 						);
 					},
 				);
 			},
+		);
+	},
+);
+
+describe(
+	'validateConfigPinoOptions()',
+	() => {
+		test(
+			'Nothing',
+			() => expect(() => validateConfigPinoOptions()).not.toThrow(),
+		);
+		test(
+			'Invalid Type',
+			() => expect(() => validateConfigPinoOptions(1)).toThrow(),
+		);
+		test(
+			'Valid Type',
+			() => expect(() => validateConfigPinoOptions({})).not.toThrow(),
+		);
+	},
+);
+
+describe(
+	'validateConfigPinoDestination()',
+	() => {
+		test(
+			'Nothing',
+			() => expect(() => validateConfigPinoDestination()).not.toThrow(),
+		);
+		test(
+			'Invalid Type',
+			() => expect(() => validateConfigPinoDestination(1)).toThrow(),
+		);
+		test(
+			'Valid Type',
+			() => expect(() => validateConfigPinoDestination({})).not.toThrow(),
+		);
+	},
+);
+
+describe(
+	'validateConfigPino()',
+	() => {
+		test(
+			'Nothing',
+			() => expect(() => validateConfigPino()).not.toThrow(),
+		);
+		test(
+			'Invalid Type',
+			() => expect(() => validateConfigPino(1)).toThrow(),
+		);
+		test(
+			'Valid Type',
+			() => expect(() => validateConfigPino({})).not.toThrow(),
+		);
+	},
+);
+
+describe(
+	'Test Validate Config',
+	() => {
+		test(
+			'No Config',
+			() => expect(() => validateConfig()).toThrow(),
+		);
+		test(
+			'Integer Config',
+			() => expect(() => validateConfig(1)).toThrow(),
 		);
 	},
 );
