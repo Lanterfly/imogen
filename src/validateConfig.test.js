@@ -17,15 +17,23 @@ describe(
 			() => {
 				test(
 					'No Name',
-					() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls' })).not.toThrow(),
+					() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls' })).toThrow(),
 				);
 				test(
-					'Invalid Name',
+					'Invalid Type Name',
 					() => expect(() => validateConfigJob({ name: 1, time: '* * * * *', command: 'ls' })).toThrow(),
 				);
 				test(
+					'Empty Name',
+					() => expect(() => validateConfigJob({ name: '', time: '* * * * *', command: 'ls' })).toThrow(),
+				);
+				test(
+					'Invalid Name',
+					() => expect(() => validateConfigJob({ name: '?', time: '* * * * *', command: 'ls' })).toThrow(),
+				);
+				test(
 					'Valid Name',
-					() => expect(() => validateConfigJob({ name: 'Name', time: '* * * * *', command: 'ls' })).not.toThrow(),
+					() => expect(() => validateConfigJob({ name: 'name', time: '* * * * *', command: 'ls' })).not.toThrow(),
 				);
 			},
 		);
@@ -34,22 +42,22 @@ describe(
 			() => {
 				test(
 					'No Time',
-					() => expect(() => validateConfigJob({ time: undefined, command: 'ls' })).toThrow(),
+					() => expect(() => validateConfigJob({ name: 'name', time: undefined, command: 'ls' })).toThrow(),
 				);
 				test(
 					'Invalid Time Type',
-					() => expect(() => validateConfigJob({ time: 1, command: 'ls' })).toThrow(),
+					() => expect(() => validateConfigJob({ name: 'name', time: 1, command: 'ls' })).toThrow(),
 				);
 				describe(
 					'Time String',
 					() => {
 						test(
 							'Invalid cron string',
-							() => expect(() => validateConfigJob({ time: 'word', command: 'ls' })).toThrow(),
+							() => expect(() => validateConfigJob({ name: 'name', time: 'word', command: 'ls' })).toThrow(),
 						);
 						test(
 							'Valid cron string',
-							() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls' })).not.toThrow(),
+							() => expect(() => validateConfigJob({ name: 'name', time: '* * * * *', command: 'ls' })).not.toThrow(),
 						);
 					},
 				);
@@ -60,15 +68,15 @@ describe(
 			() => {
 				test(
 					'No Command',
-					() => expect(() => validateConfigJob({ time: '* * * * *' })).toThrow(),
+					() => expect(() => validateConfigJob({ name: 'name', time: '* * * * *' })).toThrow(),
 				);
 				test(
 					'Invalid Command Type',
-					() => expect(() => validateConfigJob({ time: '* * * * *', command: 1 })).toThrow(),
+					() => expect(() => validateConfigJob({ name: 'name', time: '* * * * *', command: 1 })).toThrow(),
 				);
 				test(
 					'Invalid Command Type',
-					() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls' })).not.toThrow(),
+					() => expect(() => validateConfigJob({ name: 'name', time: '* * * * *', command: 'ls' })).not.toThrow(),
 				);
 			},
 		);
@@ -77,15 +85,19 @@ describe(
 			() => {
 				test(
 					'No simultaneous',
-					() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls' })).not.toThrow(),
+					() => expect(() => validateConfigJob({ name: 'name', time: '* * * * *', command: 'ls' })).not.toThrow(),
 				);
 				test(
 					'Invalid simultaneous',
-					() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls', simultaneous: 'true' })).toThrow(),
+					() => expect(() => validateConfigJob({
+						name: 'name', time: '* * * * *', command: 'ls', simultaneous: 'true',
+					})).toThrow(),
 				);
 				test(
 					'Valid simultaneous',
-					() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls', simultaneous: true })).not.toThrow(),
+					() => expect(() => validateConfigJob({
+						name: 'name', time: '* * * * *', command: 'ls', simultaneous: true,
+					})).not.toThrow(),
 				);
 			},
 		);
@@ -115,7 +127,7 @@ describe(
 						);
 						test(
 							'Not Empty Array Jobs Field',
-							() => expect(() => validateConfigJobs([{ time: '* * * * *', command: 'ls' }])).not.toThrow(),
+							() => expect(() => validateConfigJobs([{ name: 'name', time: '* * * * *', command: 'ls' }])).not.toThrow(),
 						);
 					},
 				);
