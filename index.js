@@ -5,6 +5,7 @@ import { exec } from 'child_process';
 import { program } from 'commander';
 import schedule from 'node-schedule';
 import pino from 'pino';
+import {DateTime} from "luxon";
 
 import { validateConfig } from './src/validateConfig.js';
 
@@ -49,6 +50,8 @@ program.command('run')
 					schedule.scheduleJob(
 						job.time,
 						async () => {
+							const startTime = DateTime.now();
+
 							if (!(isRunning && job.simultaneous)) {
 								if (job.name !== undefined) {
 									logger.info(`Starting execution of job "${job.name}".`);
@@ -75,6 +78,31 @@ program.command('run')
 												logger.info(`Finished execution of job "${job.name}".`);
 											} else {
 												logger.info(`Finished execution of job "${job.command}".`);
+											}
+
+											// Output STDOUT & STDERR Files
+											const filePrefix = `${startTime.toFormat('yyyyMMdd_HHmm')}_${job.name}`;
+											if (config.record.writeStdOut) {
+												fs.writeFile(
+													`${config.record.directory}/${filePrefix}_stdout.log`,
+													stdout || '',
+													(error) => {
+														if (error) {
+															logger.error(`Failed to write STDOUT file for job '${job.name}': ` + error)
+														}
+													}
+												);
+											}
+											if (config.record.writeStdErr) {
+												fs.writeFile(
+													`${config.record.directory}/${filePrefix}_stderr.log`,
+													stderr || '',
+													(error) => {
+														if (error) {
+															logger.error(`Failed to write STDERR file for job '${job.name}': ` + error)
+														}
+													}
+												);
 											}
 										}
 									},
