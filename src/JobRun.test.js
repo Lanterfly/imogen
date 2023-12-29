@@ -92,6 +92,18 @@ describe(
 );
 
 test(
+	'runJob()',
+	() => expect(() => runJob(
+		{},
+		MOCK_LOGGER,
+		{
+			name: 'name',
+			command: '* * * * *'
+		}
+	)).not.toThrow(),
+);
+
+test(
 	'Run Job',
 	() => expect(
 		() => jobRun(
