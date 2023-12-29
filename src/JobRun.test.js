@@ -1,4 +1,4 @@
-import jobRun, {onCompletedJob} from "./JobRun.js";
+import jobRun, {onCompletedJob, runJob} from "./JobRun.js";
 import {DateTime} from "luxon";
 
 const MOCK_LOGGER = {
