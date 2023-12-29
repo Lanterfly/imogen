@@ -1,4 +1,26 @@
 import parser from 'cron-parser';
+import fs from 'fs';
+
+export const loadConfig = (options) => {
+	// Load Options
+	const opts = options.opts();
+
+	// Set Default Config
+	const DEFAULT_CONFIG = {
+		record: {
+			directory: 'records',
+			writeStdOut: false,
+			writeStdErr: false,
+		},
+	};
+
+	// Load config
+	const config = fs.readFileSync(opts.config);
+	return {
+		...DEFAULT_CONFIG,
+		...JSON.parse(config),
+	};
+};
 
 export const validateConfigJob = (job, index) => {
 	// Validate "name"
