@@ -118,5 +118,5 @@ export const validateConfig = (config) => {
 
 	validateConfigJobs(config.jobs);
 	validateConfigPino(config.pino);
-	validateConfigRecord(config.pino);
+	validateConfigRecord(config.record);
 };
