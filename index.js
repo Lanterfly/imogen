@@ -16,21 +16,6 @@ program.command('run')
 	.option('-c, --config <string>', 'Config file', 'test.config.json')
 	.action(
 		(str, options) => {
-			// Make Logger
-			const fileTransport = pino.transport({
-				targets: [
-					{
-						target: 'pino/file',
-						options: { destination: 'imogen.log' },
-					},
-					{
-						target: 'pino-pretty',
-						options: {},
-					},
-				],
-			});
-			const logger = pino({}, fileTransport);
-
 			// Load Options
 			const opts = options.opts();
 
@@ -39,9 +24,10 @@ program.command('run')
 			config = JSON.parse(config);
 
 			// Validate Config
-			logger.info('Validating the config file...');
 			validateConfig(config);
-			logger.info('Validated the config file.');
+
+			// Make Logger
+			const logger = pino(config.pino.options, config.pino.destination);
 
 			// Schedule Jobs
 			config.jobs.forEach(
@@ -101,7 +87,6 @@ program.command('validate')
 			config = JSON.parse(config);
 
 			// Validate Config
-			logger.info('Validating the config file...');
 			validateConfig(config);
 			logger.info('Validated the config file.');
 		},
