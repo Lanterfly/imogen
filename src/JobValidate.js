@@ -1,7 +1,7 @@
 import pino from "pino";
 import fs from "fs";
 
-import {validateConfig} from "./config/ValidateConfig.js";
+import {validateConfig} from "./ConfigUtil.js";
 
 export default (str, options) => {
 	// Make Logger

@@ -4,7 +4,7 @@ import schedule from "node-schedule";
 import {DateTime} from "luxon";
 import {exec} from "child_process";
 
-import {validateConfig} from "./config/ValidateConfig.js";
+import {validateConfig} from "./ConfigUtil.js";
 
 export default (str, options) => {
 	// Load Options

@@ -5,7 +5,7 @@ import {
 	validateConfigPino,
 	validateConfigPinoDestination,
 	validateConfigPinoOptions, validateConfigRecord,
-} from './ValidateConfig.js';
+} from './ConfigUtil.js';
 
 /* eslint-disable no-undef */
 
