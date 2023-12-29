@@ -9,5 +9,10 @@
       "time": "*/2 * * * * *",
       "command": "echo \"Test #2\""
     }
-  ]
+  ],
+  "log": {
+    "console": true,
+    "file": true,
+    "filePath": "./imogen.log"
+  }
 }
