@@ -1,4 +1,11 @@
-import {validateConfig, validateConfigJob, validateConfigJobs} from './validateConfig.js';
+import {
+	validateConfig,
+	validateConfigJob,
+	validateConfigJobs,
+	validateConfigPino,
+	validateConfigPinoDestination,
+	validateConfigPinoOptions
+} from './validateConfig.js';
 
 /* eslint-disable no-undef */
 
@@ -113,6 +120,60 @@ describe(
 					},
 				);
 			},
+		);
+	},
+);
+
+describe(
+	'validateConfigPinoOptions()',
+	() => {
+		test(
+			'Nothing',
+			() => expect(() => validateConfigPinoOptions()).not.toThrow(),
+		);
+		test(
+			'Invalid Type',
+			() => expect(() => validateConfigPinoOptions(1)).toThrow(),
+		);
+		test(
+			'Valid Type',
+			() => expect(() => validateConfigPinoOptions({})).not.toThrow(),
+		);
+	},
+);
+
+describe(
+	'validateConfigPinoDestination()',
+	() => {
+		test(
+			'Nothing',
+			() => expect(() => validateConfigPinoDestination()).not.toThrow(),
+		);
+		test(
+			'Invalid Type',
+			() => expect(() => validateConfigPinoDestination(1)).toThrow(),
+		);
+		test(
+			'Valid Type',
+			() => expect(() => validateConfigPinoDestination({})).not.toThrow(),
+		);
+	},
+);
+
+describe(
+	'validateConfigPino()',
+	() => {
+		test(
+			'Nothing',
+			() => expect(() => validateConfigPino()).not.toThrow(),
+		);
+		test(
+			'Invalid Type',
+			() => expect(() => validateConfigPino(1)).toThrow(),
+		);
+		test(
+			'Valid Type',
+			() => expect(() => validateConfigPino({})).not.toThrow(),
 		);
 	},
 );

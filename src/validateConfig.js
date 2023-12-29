@@ -53,12 +53,40 @@ export const validateConfigJobs = (jobs) => {
 	}
 };
 
+export const validateConfigPinoOptions = (options) => {
+	if (options !== undefined) {
+		if (typeof options !== 'object') {
+			throw new Error('Pino config options is not an object.');
+		}
+	}
+};
+
+export const validateConfigPinoDestination = (destination) => {
+	if (destination !== undefined) {
+		if (typeof destination !== 'object') {
+			throw new Error('Pino config destination is not an object.');
+		}
+	}
+};
+
+export const validateConfigPino = (pino) => {
+	if (pino !== undefined) {
+		if (typeof pino !== 'object') {
+			throw new Error('Pino config is not an object.');
+		} else {
+			validateConfigPinoOptions(pino.options);
+			validateConfigPinoDestination(pino.destination);
+		}
+	}
+}
+
 export const validateConfig = (config) => {
 	if (config === undefined) {
 		throw new Error('No config given.');
 	} else if (typeof config !== 'object') {
-		throw new Error('The config was no an object.');
+		throw new Error('The config is not an object.');
 	}
 
 	validateConfigJobs(config.jobs);
+	validateConfigPino(config.pino);
 };
