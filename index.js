@@ -47,6 +47,7 @@ program.command('run')
 				(job) => {
 					let isRunning = false;
 
+					logger.info(`Scheduling job '${job.name}'. Running on schedule: '${job.time}'`);
 					schedule.scheduleJob(
 						job.time,
 						async () => {
