@@ -1,4 +1,4 @@
-import { onCompletedJob } from "./JobRun.js";
+import jobRun, {onCompletedJob} from "./JobRun.js";
 import {DateTime} from "luxon";
 
 const MOCK_LOGGER = {
@@ -89,4 +89,18 @@ describe(
 			},
 		);
 	},
+);
+
+test(
+	'Run Job',
+	() => expect(
+		() => jobRun(
+			undefined,
+			{
+				opts: () => ({
+					config: 'test.config.json',
+				})
+			}
+		)
+	).not.toThrow(),
 );

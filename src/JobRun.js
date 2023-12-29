@@ -50,7 +50,7 @@ export const onCompletedJob = (err, stdout, stderr, config, logger, job, startTi
 	}
 };
 
-const runJob = async (config, logger, job) => {
+export const runJob = async (config, logger, job) => {
 	const startTime = DateTime.now();
 
 	if (!(RUNNING_STATUSES[job.name] && job.simultaneous)) {
@@ -80,7 +80,7 @@ const scheduleJob = (config, logger, job) => {
 
 export default (str, options) => {
 	// Load Config
-	const config = loadConfig(options.opts());
+	const config = loadConfig(options);
 
 	// Validate Config
 	validateConfig(config);
@@ -90,6 +90,6 @@ export default (str, options) => {
 
 	// Schedule Jobs
 	config.jobs.forEach(
-		(job) => scheduleJob(logger, job),
+		(job) => scheduleJob(config, logger, job),
 	);
 };
