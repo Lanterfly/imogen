@@ -78,7 +78,7 @@ export const validateConfigPino = (pino) => {
 			validateConfigPinoDestination(pino.destination);
 		}
 	}
-}
+};
 
 export const validateConfig = (config) => {
 	if (config === undefined) {

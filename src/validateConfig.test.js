@@ -4,7 +4,7 @@ import {
 	validateConfigJobs,
 	validateConfigPino,
 	validateConfigPinoDestination,
-	validateConfigPinoOptions
+	validateConfigPinoOptions,
 } from './validateConfig.js';
 
 /* eslint-disable no-undef */
@@ -111,7 +111,7 @@ describe(
 					() => {
 						test(
 							'Empty Array Jobs Field',
-							() => expect(() => validateConfigJobs([] )).toThrow(),
+							() => expect(() => validateConfigJobs([])).toThrow(),
 						);
 						test(
 							'Not Empty Array Jobs Field',
