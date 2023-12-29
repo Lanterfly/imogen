@@ -11,7 +11,8 @@
     }
   ],
   "pino": {
-    "options": {},
-    "destination": {}
+    "options": {
+      "level": "debug"
+    }
   }
 }
