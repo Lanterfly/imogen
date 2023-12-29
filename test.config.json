@@ -1,7 +1,7 @@
 {
   "jobs": [
     {
-      "name": "Test Job #1",
+      "name": "test-job-1",
       "time": "* * * * * *",
       "command": "echo \"Test #1\""
     },

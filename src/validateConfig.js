@@ -2,10 +2,12 @@ import parser from 'cron-parser';
 
 export const validateConfigJob = (job, index) => {
 	// Validate "name"
-	if (job.name !== undefined) {
-		if (typeof job.name !== 'string') {
-			throw new Error(`'name' field must be a string for job[${index}].`);
-		}
+	if (typeof job.name !== 'string') {
+		throw new Error(`'name' field must be a string for job[${index}].`);
+	} else if (job.name.length === 0) {
+		throw new Error(`'name' field must be a not empty string for job[${index}].`);
+	} else if (job.name.match(/([a-z]|[A-Z]|[0-9]|_|-)+/g) === null) {
+		throw new Error(`'name' field for job[${index}] can only container letters, numbers, dashes, and underscores.`);
 	}
 
 	if (job.time === undefined) {
