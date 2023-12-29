@@ -21,11 +21,7 @@ export const onCompletedJob = (err, stdout, stderr, config, logger, job, startTi
 		logger.error(`Failed to run job: ${err}`);
 	} else {
 		// Log job completion
-		if (job.name !== undefined) {
-			logger.info(`Finished execution of job "${job.name}".`);
-		} else {
-			logger.info(`Finished execution of job "${job.command}".`);
-		}
+		logger.info(`Finished execution of job "${job.command}".`);
 
 		// Output STDOUT & STDERR Files
 		const filePrefix = `${startTime.toFormat('yyyyMMdd_HHmm')}_${job.name}`;
