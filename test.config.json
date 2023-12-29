@@ -6,6 +6,7 @@
       "command": "echo \"Test #1\""
     },
     {
+      "name": "test-job-2",
       "time": "*/2 * * * * *",
       "command": "echo \"Test #2\""
     }
