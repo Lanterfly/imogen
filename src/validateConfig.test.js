@@ -127,7 +127,7 @@ describe(
 						);
 						test(
 							'Not Empty Array Jobs Field',
-							() => expect(() => validateConfigJobs([{ time: '* * * * *', command: 'ls' }])).not.toThrow(),
+							() => expect(() => validateConfigJobs([{ name: 'name', time: '* * * * *', command: 'ls' }])).not.toThrow(),
 						);
 					},
 				);
