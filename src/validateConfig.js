@@ -82,6 +82,30 @@ export const validateConfigPino = (pino) => {
 	}
 };
 
+export const validateConfigRecord = (record) => {
+	if (record !== undefined) {
+		if (typeof record !== 'object') {
+			throw new Error('The record config is not an object.');
+		} else {
+			if (record.directory !== undefined) {
+				if (typeof record.directory !== 'string') {
+					throw new Error('The \'record.directory\' config is not an string.');
+				}
+			}
+			if (record.writeStdOut !== undefined) {
+				if (typeof record.writeStdOut !== 'boolean') {
+					throw new Error('The \'record.writeStdOut\' config is not an boolean.');
+				}
+			}
+			if (record.writeStdErr !== undefined) {
+				if (typeof record.writeStdErr !== 'boolean') {
+					throw new Error('The \'record.writeStdErr\' config is not an boolean.');
+				}
+			}
+		}
+	}
+};
+
 export const validateConfig = (config) => {
 	if (config === undefined) {
 		throw new Error('No config given.');
@@ -91,4 +115,5 @@ export const validateConfig = (config) => {
 
 	validateConfigJobs(config.jobs);
 	validateConfigPino(config.pino);
+	validateConfigRecord(config.record);
 };
