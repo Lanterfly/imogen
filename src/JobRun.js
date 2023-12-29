@@ -6,8 +6,10 @@ import {exec} from "child_process";
 
 import {loadConfig, validateConfig} from "./ConfigUtil.js";
 
+const RUNNING_STATUSES = {};
+
 const scheduleJob = (logger, job) => {
-	let isRunning = false;
+	RUNNING_STATUSES[job.name] = false;
 
 	logger.info(`Scheduling job '${job.name}'. Running on schedule: '${job.time}'`);
 	schedule.scheduleJob(
@@ -21,7 +23,7 @@ const scheduleJob = (logger, job) => {
 				} else {
 					logger.info(`Starting execution of job "${job.command}".`);
 				}
-				isRunning = true;
+				RUNNING_STATUSES[job.name] = true;
 				exec(
 					job.command,
 					(err, stdout, stderr) => {
@@ -70,7 +72,7 @@ const scheduleJob = (logger, job) => {
 						}
 					},
 				);
-				isRunning = false;
+				RUNNING_STATUSES[job.name] = false;
 			}
 		},
 	);
