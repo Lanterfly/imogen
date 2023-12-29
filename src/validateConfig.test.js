@@ -232,19 +232,6 @@ describe(
 				);
 			},
 		);
-		describe(
-			'writeStatistics',
-			() => {
-				test(
-					'Invalid Type',
-					() => expect(() => validateConfigRecord({ writeStatistics: 1 })).toThrow(),
-				);
-				test(
-					'Valid Type',
-					() => expect(() => validateConfigRecord({ writeStatistics: true })).not.toThrow(),
-				);
-			},
-		);
 	},
 );
 

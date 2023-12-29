@@ -100,11 +100,6 @@ export const validateConfigRecord = (record) => {
 					throw new Error('The \'record.writeStdErr\' config is not an boolean.');
 				}
 			}
-			if (record.writeStatistics !== undefined) {
-				if (typeof record.writeStatistics !== 'boolean') {
-					throw new Error('The \'record.writeStatistics\' config is not an boolean.');
-				}
-			}
 		}
 	}
 };
