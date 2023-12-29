@@ -19,9 +19,21 @@ program.command('run')
 			// Load Options
 			const opts = options.opts();
 
+			// Set Default Config
+			const DEFAULT_CONFIG = {
+				record: {
+					directory: 'records',
+					writeStdOut: false,
+					writeStdErr: false,
+				}
+			};
+
 			// Load config
 			let config = fs.readFileSync(opts.config);
-			config = JSON.parse(config);
+			config = {
+				...DEFAULT_CONFIG,
+				...JSON.parse(config),
+			};
 
 			// Validate Config
 			validateConfig(config);
@@ -47,19 +59,23 @@ program.command('run')
 								exec(
 									job.command,
 									(err, stdout, stderr) => {
-										if (err) {
-											logger.error(`Failed to run job: ${err}`);
-										}
+										// Log STDOUT and STDERR
 										if (stdout) {
 											logger.info(`Execution STDOUT:\n${stdout}`);
 										}
 										if (stderr) {
 											logger.info(`Execution STDERR:\n${stderr}`);
 										}
-										if (job.name !== undefined) {
-											logger.info(`Finished execution of job "${job.name}".`);
+
+										if (err) {
+											logger.error(`Failed to run job: ${err}`);
 										} else {
-											logger.info(`Finished execution of job "${job.command}".`);
+											// Log job completion
+											if (job.name !== undefined) {
+												logger.info(`Finished execution of job "${job.name}".`);
+											} else {
+												logger.info(`Finished execution of job "${job.command}".`);
+											}
 										}
 									},
 								);
