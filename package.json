@@ -23,7 +23,7 @@
     "cron-parser": "4.9.0",
     "luxon": "3.4.4",
     "node-schedule": "2.1.1",
-    "pino": "8.17.2"
+    "pino": "8.18.0"
   },
   "bin": {
     "imogen": "index.js"
