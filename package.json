@@ -5,6 +5,12 @@
   "main": "index.js",
   "type": "module",
   "license": "Apache-2.0",
+  "keywords": [
+    "schedule",
+    "task",
+    "job",
+    "cron"
+  ],
   "scripts": {
     "test": "jest",
     "lint": "eslint --config eslint.config.json **/*.js"
