@@ -105,16 +105,34 @@ test(
 	)).not.toThrow(),
 );
 
-test(
+describe(
 	'Run Job',
-	() => expect(
-		() => jobRun(
-			undefined,
-			{
-				opts: () => ({
-					config: 'test.config.json',
-				}),
-			},
-		),
-	).not.toThrow(),
+	() => {
+		test(
+			'With Pino Config',
+			() => expect(
+				() => jobRun(
+					undefined,
+					{
+						opts: () => ({
+							config: 'test.config.json',
+						}),
+					},
+				),
+			).not.toThrow(),
+		);
+		test(
+			'Without Pino Config',
+			() => expect(
+				() => jobRun(
+					undefined,
+					{
+						opts: () => ({
+							config: 'test2.config.json',
+						}),
+					},
+				),
+			).not.toThrow(),
+		);
+	},
 );
