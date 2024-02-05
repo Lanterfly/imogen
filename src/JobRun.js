@@ -86,7 +86,12 @@ export default (str, options) => {
 	validateConfig(config);
 
 	// Make Logger
-	const logger = pino(config.pino.options, config.pino.destination);
+	let logger;
+	if (config.pino) {
+		logger = pino(config.pino.options, config.pino.destination);
+	} else {
+		logger = pino();
+	}
 
 	// Schedule Jobs
 	config.jobs.forEach(
