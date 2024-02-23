@@ -53,7 +53,7 @@ export const onCompletedJob = (err, stdout, stderr, config, logger, job, startTi
 export const runJob = async (config, logger, job) => {
 	const startTime = DateTime.now();
 
-	if (!(RUNNING_STATUSES[job.name] && job.simultaneous)) {
+	if (!(RUNNING_STATUSES[job.name] && job.overlap)) {
 		if (job.name !== undefined) {
 			logger.info(`Starting execution of job "${job.name}".`);
 		} else {
