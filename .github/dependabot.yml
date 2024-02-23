@@ -5,8 +5,19 @@
 
 version: 2
 updates:
+  # Current Version
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/" # Location of package manifests
+    schedule:
+      interval: "daily"
+      time: "00:00"
+      timezone: "Etc/GMT"
+
+  # Legacy Version
+  # Current Version
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/" # Location of package manifests
+    target-branch: release/0.5
     schedule:
       interval: "daily"
       time: "00:00"
