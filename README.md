@@ -47,6 +47,5 @@ A configuration is a json file with the following fields:
 ## Officially Supported Node Versions
 
 - 18.x
-- 19.x
 - 20.x
 - 21.x
