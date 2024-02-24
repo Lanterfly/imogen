@@ -81,22 +81,22 @@ describe(
 			},
 		);
 		describe(
-			'Test simultaneous',
+			'Test overlap',
 			() => {
 				test(
-					'No simultaneous',
+					'No overlap',
 					() => expect(() => validateConfigJob({ name: 'name', time: '* * * * *', command: 'ls' })).not.toThrow(),
 				);
 				test(
-					'Invalid simultaneous',
+					'Invalid overlap',
 					() => expect(() => validateConfigJob({
-						name: 'name', time: '* * * * *', command: 'ls', simultaneous: 'true',
+						name: 'name', time: '* * * * *', command: 'ls', overlap: 'true',
 					})).toThrow(),
 				);
 				test(
-					'Valid simultaneous',
+					'Valid overlap',
 					() => expect(() => validateConfigJob({
-						name: 'name', time: '* * * * *', command: 'ls', simultaneous: true,
+						name: 'name', time: '* * * * *', command: 'ls', overlap: true,
 					})).not.toThrow(),
 				);
 			},

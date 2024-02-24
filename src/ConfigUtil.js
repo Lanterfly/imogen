@@ -50,9 +50,9 @@ export const validateConfigJob = (job, index) => {
 		throw new Error(`'command' field must be a cron string for job[${index}].`);
 	}
 
-	if (job.simultaneous !== undefined) {
-		if (typeof job.simultaneous !== 'boolean') {
-			throw new Error(`'simultaneous' field must be a boolean for job[${index}].`);
+	if (job.overlap !== undefined) {
+		if (typeof job.overlap !== 'boolean') {
+			throw new Error(`'overlap' field must be a boolean for job[${index}].`);
 		}
 	}
 };
