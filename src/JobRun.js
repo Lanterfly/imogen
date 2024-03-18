@@ -23,19 +23,8 @@ export const onCompletedJob = (err, stdout, stderr, config, logger, job, startTi
 		// Log job completion
 		logger.info(`Finished execution of job "${job.command}".`);
 
-		// Output STDOUT & STDERR Files
+		// Output STDERR File
 		const filePrefix = `${startTime.toFormat('yyyyMMdd_HHmm')}_${job.name}`;
-		if (config.record.writeStdOut) {
-			fs.writeFile(
-				`${config.record.directory}/${filePrefix}_stdout.log`,
-				stdout || '',
-				(error) => {
-					if (error) {
-						logger.error(`Failed to write STDOUT file for job '${job.name}': ${error}`);
-					}
-				},
-			);
-		}
 		if (config.record.writeStdErr) {
 			fs.writeFile(
 				`${config.record.directory}/${filePrefix}_stderr.log`,
@@ -61,7 +50,7 @@ export const runJob = async (config, logger, job) => {
 		}
 		RUNNING_STATUSES[job.name] = true;
 		exec(
-			job.command,
+			`${job.command} >> ${startTime.toFormat('yyyyMMdd_HHmm')}_${job.name}_stdout.log`,
 			(err, stdout, stderr) => onCompletedJob(err, stdout, stderr, config, logger, job, startTime),
 		);
 		RUNNING_STATUSES[job.name] = false;
