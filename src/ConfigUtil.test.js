@@ -3,7 +3,6 @@ import {
 	validateConfigJob,
 	validateConfigJobs,
 	validateConfigPino,
-	validateConfigPinoDestination,
 	validateConfigPinoOptions, validateConfigRecord,
 } from './ConfigUtil.js';
 
@@ -150,24 +149,6 @@ describe(
 		test(
 			'Valid Type',
 			() => expect(() => validateConfigPinoOptions({})).not.toThrow(),
-		);
-	},
-);
-
-describe(
-	'validateConfigPinoDestination()',
-	() => {
-		test(
-			'Nothing',
-			() => expect(() => validateConfigPinoDestination()).not.toThrow(),
-		);
-		test(
-			'Invalid Type',
-			() => expect(() => validateConfigPinoDestination(1)).toThrow(),
-		);
-		test(
-			'Valid Type',
-			() => expect(() => validateConfigPinoDestination({})).not.toThrow(),
 		);
 	},
 );
