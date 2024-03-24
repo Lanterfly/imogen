@@ -16,7 +16,7 @@
     "lint": "eslint --config eslint.config.json **/*.js"
   },
   "author": "Ethan Raymond",
-  "repository": "https://github.com/EthanDRaymond/imogen",
+  "repository": "https://github.com/Lanterfly/imogen",
   "devDependencies": {
     "@babel/preset-env": "7.24.3",
     "eslint": "8.57.0",
