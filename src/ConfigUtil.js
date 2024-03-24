@@ -85,21 +85,12 @@ export const validateConfigPinoOptions = (options) => {
 	}
 };
 
-export const validateConfigPinoDestination = (destination) => {
-	if (destination !== undefined) {
-		if (typeof destination !== 'object') {
-			throw new Error('Pino config destination is not an object.');
-		}
-	}
-};
-
 export const validateConfigPino = (pino) => {
 	if (pino !== undefined) {
 		if (typeof pino !== 'object') {
 			throw new Error('Pino config is not an object.');
 		} else {
 			validateConfigPinoOptions(pino.options);
-			validateConfigPinoDestination(pino.destination);
 		}
 	}
 };
