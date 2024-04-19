@@ -41,23 +41,23 @@ describe(
 			() => {
 				test(
 					'No Name',
-					() => expect(() => validateConfigJob({ time: '* * * * *', command: 'ls' })).toThrow(),
+					() => expect(() => validateConfigJob({ id: 'id', time: '* * * * *', command: 'ls' })).toThrow(),
 				);
 				test(
 					'Invalid Type Name',
-					() => expect(() => validateConfigJob({ name: 1, time: '* * * * *', command: 'ls' })).toThrow(),
+					() => expect(() => validateConfigJob({ id: 'id', name: 1, time: '* * * * *', command: 'ls' })).toThrow(),
 				);
 				test(
 					'Empty Name',
-					() => expect(() => validateConfigJob({ name: '', time: '* * * * *', command: 'ls' })).toThrow(),
+					() => expect(() => validateConfigJob({ id: 'id', name: '', time: '* * * * *', command: 'ls' })).toThrow(),
 				);
 				test(
 					'Invalid Name',
-					() => expect(() => validateConfigJob({ name: '?', time: '* * * * *', command: 'ls' })).toThrow(),
+					() => expect(() => validateConfigJob({ id: 'id', name: '?', time: '* * * * *', command: 'ls' })).toThrow(),
 				);
 				test(
 					'Valid Name',
-					() => expect(() => validateConfigJob({ name: 'name', time: '* * * * *', command: 'ls' })).not.toThrow(),
+					() => expect(() => validateConfigJob({ id: 'id', name: 'name', time: '* * * * *', command: 'ls' })).not.toThrow(),
 				);
 			},
 		);
@@ -66,22 +66,22 @@ describe(
 			() => {
 				test(
 					'No Time',
-					() => expect(() => validateConfigJob({ name: 'name', time: undefined, command: 'ls' })).toThrow(),
+					() => expect(() => validateConfigJob({ id: 'id', name: 'name', time: undefined, command: 'ls' })).toThrow(),
 				);
 				test(
 					'Invalid Time Type',
-					() => expect(() => validateConfigJob({ name: 'name', time: 1, command: 'ls' })).toThrow(),
+					() => expect(() => validateConfigJob({ id: 'id', name: 'name', time: 1, command: 'ls' })).toThrow(),
 				);
 				describe(
 					'Time String',
 					() => {
 						test(
 							'Invalid cron string',
-							() => expect(() => validateConfigJob({ name: 'name', time: 'word', command: 'ls' })).toThrow(),
+							() => expect(() => validateConfigJob({ id: 'id', name: 'name', time: 'word', command: 'ls' })).toThrow(),
 						);
 						test(
 							'Valid cron string',
-							() => expect(() => validateConfigJob({ name: 'name', time: '* * * * *', command: 'ls' })).not.toThrow(),
+							() => expect(() => validateConfigJob({ id: 'id', name: 'name', time: '* * * * *', command: 'ls' })).not.toThrow(),
 						);
 					},
 				);
@@ -92,15 +92,15 @@ describe(
 			() => {
 				test(
 					'No Command',
-					() => expect(() => validateConfigJob({ name: 'name', time: '* * * * *' })).toThrow(),
+					() => expect(() => validateConfigJob({ id: 'id', name: 'name', time: '* * * * *' })).toThrow(),
 				);
 				test(
 					'Invalid Command Type',
-					() => expect(() => validateConfigJob({ name: 'name', time: '* * * * *', command: 1 })).toThrow(),
+					() => expect(() => validateConfigJob({ id: 'id', name: 'name', time: '* * * * *', command: 1 })).toThrow(),
 				);
 				test(
 					'Invalid Command Type',
-					() => expect(() => validateConfigJob({ name: 'name', time: '* * * * *', command: 'ls' })).not.toThrow(),
+					() => expect(() => validateConfigJob({ id: 'id', name: 'name', time: '* * * * *', command: 'ls' })).not.toThrow(),
 				);
 			},
 		);
@@ -109,18 +109,18 @@ describe(
 			() => {
 				test(
 					'No overlap',
-					() => expect(() => validateConfigJob({ name: 'name', time: '* * * * *', command: 'ls' })).not.toThrow(),
+					() => expect(() => validateConfigJob({ id: 'id', name: 'name', time: '* * * * *', command: 'ls' })).not.toThrow(),
 				);
 				test(
 					'Invalid overlap',
 					() => expect(() => validateConfigJob({
-						name: 'name', time: '* * * * *', command: 'ls', overlap: 'true',
+						id: 'id', name: 'name', time: '* * * * *', command: 'ls', overlap: 'true',
 					})).toThrow(),
 				);
 				test(
 					'Valid overlap',
 					() => expect(() => validateConfigJob({
-						name: 'name', time: '* * * * *', command: 'ls', overlap: true,
+						id: 'id', name: 'name', time: '* * * * *', command: 'ls', overlap: true,
 					})).not.toThrow(),
 				);
 			},
@@ -160,7 +160,7 @@ describe(
 						);
 						test(
 							'Not Empty Array Jobs Field',
-							() => expect(() => validateConfigJobs([{ name: 'name', time: '* * * * *', command: 'ls' }])).not.toThrow(),
+							() => expect(() => validateConfigJobs([{ id: 'id', name: 'name', time: '* * * * *', command: 'ls' }])).not.toThrow(),
 						);
 					},
 				);

@@ -1,11 +1,13 @@
 {
   "jobs": [
     {
+      "id": "test-job-1",
       "name": "test-job-1",
       "time": "* * * * * *",
       "command": "echo \"Test #1\""
     },
     {
+      "id": "test-job-2",
       "name": "test-job-2",
       "time": "*/2 * * * * *",
       "command": "echo \"Test #2\""
