@@ -3,7 +3,7 @@ import {
 	validateConfigJob,
 	validateConfigJobs,
 	validateConfigPino,
-	validateConfigPinoOptions, validateConfigRecord,
+	validateConfigPinoOptions,
 } from './ConfigUtil.js';
 
 /* eslint-disable no-undef */
@@ -167,63 +167,6 @@ describe(
 		test(
 			'Valid Type',
 			() => expect(() => validateConfigPino({})).not.toThrow(),
-		);
-	},
-);
-
-describe(
-	'validateConfigRecord()',
-	() => {
-		test(
-			'Nothing',
-			() => expect(() => validateConfigRecord()).not.toThrow(),
-		);
-		test(
-			'Invalid Type',
-			() => expect(() => validateConfigRecord(1)).toThrow(),
-		);
-		test(
-			'Empty Object',
-			() => expect(() => validateConfigRecord({})).not.toThrow(),
-		);
-		describe(
-			'directory',
-			() => {
-				test(
-					'Invalid Type',
-					() => expect(() => validateConfigRecord({ directory: 1 })).toThrow(),
-				);
-				test(
-					'Valid Type',
-					() => expect(() => validateConfigRecord({ directory: '' })).not.toThrow(),
-				);
-			},
-		);
-		describe(
-			'writeStdOut',
-			() => {
-				test(
-					'Invalid Type',
-					() => expect(() => validateConfigRecord({ writeStdOut: 1 })).toThrow(),
-				);
-				test(
-					'Valid Type',
-					() => expect(() => validateConfigRecord({ writeStdOut: true })).not.toThrow(),
-				);
-			},
-		);
-		describe(
-			'writeStdErr',
-			() => {
-				test(
-					'Invalid Type',
-					() => expect(() => validateConfigRecord({ writeStdErr: 1 })).toThrow(),
-				);
-				test(
-					'Valid Type',
-					() => expect(() => validateConfigRecord({ writeStdErr: true })).not.toThrow(),
-				);
-			},
 		);
 	},
 );

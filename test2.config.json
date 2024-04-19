@@ -10,10 +10,5 @@
       "time": "*/2 * * * * *",
       "command": "echo \"Test #2\""
     }
-  ],
-  "record": {
-    "directory": "records",
-    "writeStdOut": true,
-    "writeStdErr": true
-  }
+  ]
 }

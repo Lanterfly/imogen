@@ -22,20 +22,6 @@ export const onCompletedJob = (err, stdout, stderr, config, logger, job, startTi
 	} else {
 		// Log job completion
 		logger.info(`Finished execution of job "${job.command}".`);
-
-		// Output STDERR File
-		const filePrefix = `${startTime.toFormat('yyyyMMdd_HHmm')}_${job.name}`;
-		if (config.record.writeStdErr) {
-			fs.writeFile(
-				`${config.record.directory}/${filePrefix}_stderr.log`,
-				stderr || '',
-				(error) => {
-					if (error) {
-						logger.error(`Failed to write STDERR file for job '${job.name}': ${error}`);
-					}
-				},
-			);
-		}
 	}
 };
 

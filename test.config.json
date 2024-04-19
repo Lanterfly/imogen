@@ -15,10 +15,5 @@
     "options": {
       "level": "debug"
     }
-  },
-  "record": {
-    "directory": "records",
-    "writeStdOut": true,
-    "writeStdErr": true
   }
 }
