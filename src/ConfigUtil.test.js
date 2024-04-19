@@ -12,6 +12,31 @@ describe(
 	'validateConfigJob()',
 	() => {
 		describe(
+			'Test ID',
+			() => {
+				test(
+					'None',
+					() => expect(() => validateConfigJob({ name: 'name', time: '* * * * *', command: 'ls' })).toThrow(),
+				);
+				test(
+					'Invalid Type',
+					() => expect(() => validateConfigJob({ id: 0, name: 'name', time: '* * * * *', command: 'ls' })).toThrow(),
+				);
+				test(
+					'Empty',
+					() => expect(() => validateConfigJob({ id: '', name: 'name', time: '* * * * *', command: 'ls' })).toThrow(),
+				);
+				test(
+					'Invalid',
+					() => expect(() => validateConfigJob({ id: '?', name: 'name', time: '* * * * *', command: 'ls' })).toThrow(),
+				);
+				test(
+					'Valid Name',
+					() => expect(() => validateConfigJob({ id: 'id', name: 'name', time: '* * * * *', command: 'ls' })).not.toThrow(),
+				);
+			},
+		);
+		describe(
 			'Test Name',
 			() => {
 				test(

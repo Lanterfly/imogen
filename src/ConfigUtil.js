@@ -23,6 +23,15 @@ export const loadConfig = (options) => {
 };
 
 export const validateConfigJob = (job, index) => {
+	// Validate "id"
+	if (typeof job.id !== 'string') {
+		throw new Error(`'id' field must be a string for job[${index}].`);
+	} else if (job.id.length === 0) {
+		throw new Error(`'id' field must be a not empty string for job[${index}].`);
+	} else if (job.id.match(/([a-z]|[A-Z]|[0-9]|_|-)+/g) === null) {
+		throw new Error(`'id' field for job[${index}] can only container letters, numbers, dashes, and underscores.`);
+	}
+
 	// Validate "name"
 	if (typeof job.name !== 'string') {
 		throw new Error(`'name' field must be a string for job[${index}].`);
