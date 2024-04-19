@@ -1,5 +1,6 @@
 import parser from 'cron-parser';
 import fs from 'fs';
+import {getDuplicates} from "./util/ArrayUtil.js";
 
 export const loadConfig = (options) => {
 	// Load Options
@@ -76,11 +77,19 @@ export const validateConfigJobs = (jobs) => {
 			if (jobs.length === 0) {
 				throw new Error('The \'jobs\' field must be a json array with at least one entry.');
 			} else {
+				// Validate Job Fields
 				jobs.forEach(
 					(job, index) => {
 						validateConfigJob(job, index);
 					},
 				);
+
+				// Validate Unique IDs
+				const ids = jobs.map((job) => job.id);
+				const duplicateIDs = getDuplicates(ids, (id1, id2) => id1.localeCompare(id2));
+				if (duplicateIDs.length > 0) {
+					throw new Error(`The following jobs IDs were used more than once: ${duplicateIDs.join(', ')}`);
+				}
 			}
 		}
 	}

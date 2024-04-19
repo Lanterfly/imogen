@@ -150,6 +150,15 @@ describe(
 							() => expect(() => validateConfigJobs([])).toThrow(),
 						);
 						test(
+							'Duplicate IDs',
+							() => expect(
+								() => validateConfigJobs([
+									{ id: 0, name: 'name', time: '* * * * *', command: 'ls' },
+									{ id: 0, name: 'name', time: '* * * * *', command: 'ls' },
+								])
+							).toThrow(),
+						);
+						test(
 							'Not Empty Array Jobs Field',
 							() => expect(() => validateConfigJobs([{ name: 'name', time: '* * * * *', command: 'ls' }])).not.toThrow(),
 						);
