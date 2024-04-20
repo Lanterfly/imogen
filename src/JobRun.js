@@ -4,7 +4,7 @@ import schedule from 'node-schedule';
 import { DateTime } from 'luxon';
 import { exec } from 'child_process';
 
-import { loadConfig, validateConfig } from './ConfigUtil.js';
+import { loadConfig, validateConfig } from './util/ConfigUtil.js';
 
 const RUNNING_STATUSES = {};
 
