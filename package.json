@@ -18,7 +18,7 @@
   "author": "Ethan Raymond",
   "repository": "https://github.com/Lanterfly/imogen",
   "devDependencies": {
-    "@babel/eslint-parser": "7.24.8",
+    "@babel/eslint-parser": "7.25.1",
     "@babel/preset-env": "7.24.8",
     "eslint": "8.57.0",
     "eslint-plugin-import": "2.29.1",
