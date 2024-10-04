@@ -7,7 +7,7 @@ import jobRun from './src/JobRun.js';
 
 program
 	.name('imogen')
-	.version('0.5.3');
+	.version('2.0.0');
 program.command('run')
 	.description('Run imogen job scheduler.')
 	.option('-c, --config <string>', 'Config file', 'test.config.json')
