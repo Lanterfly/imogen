@@ -27,6 +27,7 @@
   "dependencies": {
     "commander": "12.1.0",
     "cron-parser": "4.9.0",
+    "lodash": "4.17.21",
     "luxon": "3.5.0",
     "node-schedule": "2.1.1",
     "pino": "8.21.0"
