@@ -30,6 +30,24 @@ export const startServer = (logger, opts, db) => {
 
             res.writeHead(200);
             res.end(JSON.stringify({ enabled }));
+        } else if (req.url.startsWith('/isRunning')) {
+            const name = urlParameters.name;
+            if (name === undefined) {
+                res.writeHead(400);
+                res.end(JSON.stringify({ 'error': 'No job name provided.' }));
+                return;
+            }
+
+            const jobRecord = db.prepare('SELECT * FROM job WHERE name = ?').get(name);
+            if (!jobRecord) {
+                res.writeHead(400);
+                res.end(JSON.stringify({ 'error': `Job ${jname} does not exist.` }));
+                return;
+            }
+            const running = jobRecord.running === 'true';
+
+            res.writeHead(200);
+            res.end(JSON.stringify({ running }));
         } else {
             res.writeHead(404);
             res.end(JSON.stringify({ 'error': 'Unknown route.' }));
