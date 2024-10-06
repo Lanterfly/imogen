@@ -40,7 +40,7 @@ const run = async (str, options) => {
 	if (scheduleJobs(logger, config, db)) {
 		let doStartServer = opts.server;
 		if (doStartServer) {
-			startServer(logger, opts);
+			startServer(logger, opts, db);
 		}
 	}
 };
