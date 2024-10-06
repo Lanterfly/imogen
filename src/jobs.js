@@ -2,7 +2,7 @@ import _ from "lodash";
 import schedule from "node-schedule";
 import {exec} from "child_process";
 
-export const scheduleJobs = (logger, config, db) => {
+export const scheduleJobs = (logger, config) => {
     logger.info('Registering jobs...');
     if (_.isArray(config.jobs) && config.jobs.length > 0) {
         const errors = [];
@@ -19,45 +19,31 @@ export const scheduleJobs = (logger, config, db) => {
         }
         if (errors.length === 0) {
             for (const job of config.jobs) {
-                const jobRecord = db.prepare('SELECT * FROM job WHERE name = ?').get(job.name);
-                let doSchedule;
-                if (jobRecord) {
-                    doSchedule = jobRecord.enabled === 'true';
-                } else {
-                    db.prepare('INSERT INTO job VALUES (?, ?, ?)').run(job.name, 'true', 'false');
-                    doSchedule = true;
-                }
+                schedule.scheduleJob(
+                    job.time,
+                    () => {
+                        logger.info(`Running job ${job.name}`);
+                        exec(
+                            job.command,
+                            (err, stdout, stderr) => {
+                                // Log STDOUT and STDERR
+                                if (stdout) {
+                                    logger.info(`Job '${job.name}' STDOUT:\n${stdout}`);
+                                }
+                                if (stderr) {
+                                    logger.info(`Job '${job.name}' STDERR:\n${stderr}`);
+                                }
 
-                if (doSchedule) {
-                    schedule.scheduleJob(
-                        job.time,
-                        () => {
-                            logger.info(`Running job ${job.name}`);
-                            db.prepare('UPDATE job SET running = ? WHERE name = ?').run('true', job.name);
-
-                            exec(
-                                job.command,
-                                (err, stdout, stderr) => {
-                                    // Log STDOUT and STDERR
-                                    if (stdout) {
-                                        logger.info(`Job '${job.name}' STDOUT:\n${stdout}`);
-                                    }
-                                    if (stderr) {
-                                        logger.info(`Job '${job.name}' STDERR:\n${stderr}`);
-                                    }
-
-                                    if (err) {
-                                        logger.error(`Failed to run job: ${err}`);
-                                    } else {
-                                        // Log job completion
-                                        db.prepare('UPDATE job SET running = ? WHERE name = ?').run('false', job.name);
-                                        logger.info(`Finished execution of job "${job.name}".`);
-                                    }
-                                },
-                            );
-                        }
-                    );
-                }
+                                if (err) {
+                                    logger.error(`Failed to run job: ${err}`);
+                                } else {
+                                    // Log job completion
+                                    logger.info(`Finished execution of job "${job.name}".`);
+                                }
+                            },
+                        );
+                    }
+                )
             }
             logger.info("Registered Jobs");
             return true;
