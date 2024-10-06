@@ -83,5 +83,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm install
-      - run: timeout 10s node index.js run --config=test.config.json || echo "Success"
-      - run: timeout 10s node index.js run --config=test2.config.json || echo "Success"
+      - run: timeout 10s node index.js run --config=.github/test.config.json || echo "Success"
+      - run: timeout 10s node index.js run --config=.github/test2.config.json || echo "Success"
