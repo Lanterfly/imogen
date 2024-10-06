@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 
 import fs from 'fs';
+import http from 'http';
 
 import _ from 'lodash';
 import { program } from 'commander';
@@ -17,15 +18,7 @@ export const loadConfig = (options) => {
 	return JSON.parse(config);
 };
 
-const run = (str, options) => {
-	const logger = pino();
-
-	logger.info("Starting Imogen...");
-
-	logger.info('Reading config file...');
-	const config = loadConfig(options);
-	logger.info('Read config file.');
-
+const registerJobs = (logger, config) => {
 	logger.info('Registering jobs...');
 	if (_.isArray(config.jobs) && config.jobs.length > 0) {
 		const errors = [];
@@ -68,21 +61,69 @@ const run = (str, options) => {
 					}
 				)
 			}
+			logger.info("Registered Jobs");
+			return true;
 		} else {
 			for (const error of errors) {
 				logger.error(error);
 			}
+			return false;
 		}
-		logger.info("Registered Jobs");
 	} else {
 		logger.error("No jobs to run.");
+		return false;
 	}
+}
+
+const startServer = (logger, opts) => {
+	logger.info("Starting server...");
+
+	const bindHostname = opts['serverBindHostname']
+	const bindPort = parseInt(opts['serverBindPort']);
+
+	const requestListener = (req, res) => {
+		res.setHeader("Content-Type", "application/json");
+
+		switch (req.url) {
+			default:
+				res.writeHead(404);
+				res.end(JSON.stringify({ 'error': 'Unknown route.' }));
+				break;
+		}
+	};
+
+	// Start Server
+	const server = http.createServer(requestListener);
+	server.listen(bindPort, bindHostname, () => {
+		logger.info(`Started server on http://${bindHostname}:${bindPort}`);
+	});
 };
 
+const run = (str, options) => {
+	const logger = pino();
+
+	const opts = options.opts();
+
+	logger.info("Starting Imogen...");
+
+	logger.info('Reading config file...');
+	const config = loadConfig(options);
+	logger.info('Read config file.');
+
+	if (registerJobs(logger, config)) {
+		let doStartServer = opts.server;
+		if (doStartServer) {
+			startServer(logger, opts);
+		}
+	}
+};
 
 program.name('imogen')
 	.version('2.0.0')
 	.option('-c, --config <string>', 'Config file', 'imogen.config.json')
+	.option('-s, --server <boolean>', 'True if the Imogen server should be started, false if the Imogen server should not be started.', false)
+	.option('--server-bind-hostname <string>', 'The hostname to bind the server to.', 'localhost')
+	.option('--server-bind-port <integer>', 'The hostname to bind the server to.', '6226')
 	.action(run);
 
 program.parse();
