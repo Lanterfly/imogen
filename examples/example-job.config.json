@@ -1,0 +1,9 @@
+{
+  "jobs": [
+    {
+      "name": "job",
+      "time": "* * * * * *",
+      "command": "dir"
+    }
+  ]
+}
