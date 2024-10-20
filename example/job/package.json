@@ -1,9 +1,0 @@
-{
-  "scripts": {
-    "example": "imogen | pino-pretty"
-  },
-  "dependencies": {
-    "imogen": "file:../../",
-    "pino-pretty": "11.0.0"
-  }
-}
