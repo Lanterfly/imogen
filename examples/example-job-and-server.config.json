@@ -1,0 +1,14 @@
+{
+  "jobs": [
+    {
+      "name": "job",
+      "time": "* * * * * *",
+      "command": "dir"
+    }
+  ],
+  "server": {
+    "enabled": "true",
+    "bindHostname": "localhost",
+    "bindPort": 16061
+  }
+}

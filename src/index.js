@@ -37,9 +37,14 @@ const run = async (str, options) => {
 	logger.info('Read config file.');
 
 	if (scheduleJobs(logger, config, db)) {
-		let doStartServer = opts.server;
+		let doStartServer;
+		if (config.server) {
+			doStartServer = config.server.enabled === 'true';
+		} else {
+			doStartServer = false;
+		}
 		if (doStartServer) {
-			startServer(logger, opts, db);
+			startServer(logger, config, db);
 		}
 	}
 };
@@ -48,9 +53,6 @@ program.name('imogen')
 	.version('2.0.0')
 	.option('-c, --config <string>', 'Config file', 'imogen.config.json')
 	.option('--database-path <string>', 'Path to the SQLite file.', 'imogen.db')
-	.option('-s, --server <boolean>', 'True if the Imogen server should be started, false if the Imogen server should not be started.', false)
-	.option('--server-bind-hostname <string>', 'The hostname to bind the server to.', 'localhost')
-	.option('--server-bind-port <integer>', 'The hostname to bind the server to.', '6226')
 	.action(run);
 
 program.parse();

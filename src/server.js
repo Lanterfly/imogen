@@ -48,11 +48,11 @@ export const requestListener = (req, res, db) => {
     }
 };
 
-export const startServer = (logger, opts, db) => {
+export const startServer = (logger, config, db) => {
     logger.info("Starting server...");
 
-    const bindHostname = opts['serverBindHostname']
-    const bindPort = parseInt(opts['serverBindPort']);
+    const bindHostname = config.server.bindHostname || 'localhost';
+    const bindPort = parseInt(config.server.bindPort) || 16061;
 
     // Start Server
     const server = http.createServer(
