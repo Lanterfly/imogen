@@ -83,7 +83,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm install
-      - run: npm run example-job &
+      - run: npm run example-job-and-server &
       - run: curl http://localhost:16061/isEnabled?name=job
       - run: curl http://localhost:16061/isRunning?name=job
         working-directory: ./examples
