@@ -24,17 +24,23 @@ const run = async (str, options) => {
 
 	logger.info("Starting Imogen...");
 
+	logger.info('Reading config file...');
+	const config = loadConfig(options);
+	logger.info('Read config file.');
+
 	logger.info('Starting database...');
-	const db = new Database(opts.databasePath, {});
+	let databasePath;
+	if (config.database) {
+		databasePath = config.database.path;
+	} else {
+		databasePath = 'imogen.db';
+	}
+	const db = new Database(databasePath, {});
 	const tables = db.prepare('select name from sqlite_master where type=\'table\'').all().map((t) => t.name);
 	if (tables.indexOf('job') === -1){
 		db.prepare('CREATE TABLE IF NOT EXISTS job (name text, enabled bool, running bool)').run();
 	}
 	logger.info('Started database.')
-
-	logger.info('Reading config file...');
-	const config = loadConfig(options);
-	logger.info('Read config file.');
 
 	if (scheduleJobs(logger, config, db)) {
 		let doStartServer;
@@ -52,7 +58,6 @@ const run = async (str, options) => {
 program.name('imogen')
 	.version('2.0.0')
 	.option('-c, --config <string>', 'Config file', 'imogen.config.json')
-	.option('--database-path <string>', 'Path to the SQLite file.', 'imogen.db')
 	.action(run);
 
 program.parse();
