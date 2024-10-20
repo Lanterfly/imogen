@@ -30,7 +30,6 @@ const run = async (str, options) => {
 	if (tables.indexOf('job') === -1){
 		db.prepare('CREATE TABLE IF NOT EXISTS job (name text, enabled bool, running bool)').run();
 	}
-	console.log(tables);
 	logger.info('Started database.')
 
 	logger.info('Reading config file...');

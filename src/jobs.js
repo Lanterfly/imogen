@@ -12,6 +12,9 @@ export const scheduleJobs = (logger, config, db) => {
             if (!(_.isString(job.name) && job.name.length > 0 && job.name.match(/([a-zA-Z0-9-_])+/))) {
                 errors.push(`Job #${i} has an invalid name.`);
             }
+            if (!(_.isString(job.time) && job.time.length > 0)) {
+                errors.push(`Job #${i} has an invalid time.`);
+            }
             if (!(_.isString(job.command) && job.command.length > 0)) {
                 errors.push(`Job #${i} has an invalid command.`);
             }
@@ -22,7 +25,7 @@ export const scheduleJobs = (logger, config, db) => {
                 const jobRecord = db.prepare('SELECT * FROM job WHERE name = ?').get(job.name);
                 let doSchedule;
                 if (jobRecord) {
-                    doSchedule = jobRecord.enabled === 'true';
+                    doSchedule = jobRecord.enabled === undefined || jobRecord.enabled === 'true';
                 } else {
                     db.prepare('INSERT INTO job VALUES (?, ?, ?)').run(job.name, 'true', 'false');
                     doSchedule = true;

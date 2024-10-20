@@ -11,3 +11,13 @@ updates:
       interval: "daily"
       time: "00:00"
       timezone: "America/Denver"
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/example/job/" # Location of package manifests
+    schedule:
+      interval: "daily"
+      time: "00:00"
+      timezone: "America/Denver"
+    groups:
+      all:
+        patterns:
+          - "*"
