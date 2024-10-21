@@ -1,0 +1,18 @@
+h1 {
+    font-size: 32pt;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 24pt;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 18pt;
+    font-weight: bold;
+}
+
+pre {
+    background-color: #eee;
+}
