@@ -1,8 +1,11 @@
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { a11yLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import React from "react";
 import {Table} from "react-bootstrap";
+import SwaggerUI from "swagger-ui-react";
+import "swagger-ui-react/swagger-ui.css"
 
 function renderCodeSample(json) {
     return (
@@ -92,7 +95,7 @@ export default function () {
                     <td><code>jobs[#].command</code></td>
                     <td>Yes</td>
                     <td>String</td>
-                    <td>The system commmand which should be run on each job execution.</td>
+                    <td>The system command which should be run on each job execution.</td>
                 </tr>
                 <tr>
                     <td><code>server.enabled</code></td>
@@ -116,6 +119,69 @@ export default function () {
             </Table>
 
             <h2>Server API</h2>
+            <Card body>
+                <SwaggerUI
+                    spec={{
+                        swagger: "2.0",
+                        info: {
+                            description: "This is the API used to talk to an Imogen server instance.",
+                            version: "0.1.0",
+                            title: "Imogen Server API",
+                        },
+                        schemes: [
+                            "http"
+                        ],
+                        paths: {
+                            'isEnabled': {
+                                'get': {
+                                    "produces": [
+                                        "application/json"
+                                    ],
+                                    "parameters": [
+                                        {
+                                            "name": "name",
+                                            "description": "The name of the job.",
+                                            "required": true,
+                                            "type": "string",
+                                        },
+                                    ],
+                                    "responses": {
+                                        "200": {
+                                            "description": "successful operation",
+                                        },
+                                        "500": {
+                                            "description": "unsuccessful operation",
+                                        }
+                                    },
+                                },
+                            },
+                            'isRunning': {
+                                'get': {
+                                    "produces": [
+                                        "application/json"
+                                    ],
+                                    "parameters": [
+                                        {
+                                            "name": "name",
+                                            "description": "The name of the job.",
+                                            "required": true,
+                                            "type": "string",
+                                        },
+                                    ],
+                                    "responses": {
+                                        "200": {
+                                            "description": "successful operation",
+                                        },
+                                        "500": {
+                                            "description": "unsuccessful operation",
+                                        }
+                                    },
+                                },
+                            },
+                        },
+                    }}
+                />
+            </Card>
         </Container>
     );
 }

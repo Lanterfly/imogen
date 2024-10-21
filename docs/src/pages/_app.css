@@ -16,3 +16,6 @@ h3 {
 pre {
     background-color: #eee;
 }
+pre.version {
+    background-color: transparent;
+}
