@@ -16,7 +16,7 @@ export default function Hero() {
                     <div style={{display: 'inline-block'}}>
                         <ButtonToolbar>
                             <ButtonGroup className="me-2">
-                                <Button>Get Started</Button>
+                                <Button href="introduction">Get Started</Button>
                             </ButtonGroup>
                             <ButtonGroup aria-label="Third group">
                                 <Button variant="light">Documentation</Button>

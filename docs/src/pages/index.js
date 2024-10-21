@@ -1,6 +1,6 @@
 import Hero from "#/components/Hero";
 
-export default function Index() {
+export default function () {
   return (
     <>
       <Hero />
