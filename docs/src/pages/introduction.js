@@ -23,7 +23,7 @@ function renderCodeSample(json) {
     );
 }
 
-export default function () {
+export default function Introduction () {
     return (
         <Container style={{ paddingTop: '1em' }}>
             <h1>Getting Started</h1>

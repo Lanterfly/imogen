@@ -27,7 +27,7 @@ function renderCodeSample(json) {
     );
 }
 
-export default function () {
+export default function Documentation () {
     return (
         <Container style={{paddingTop: '1em'}}>
             <h1>Documentation</h1>
