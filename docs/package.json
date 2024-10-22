@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --config=eslint.config.json src/**/*.js src/**/*.jsx"
+    "lint": "eslint --config=eslint.config.js src/**/*.{js,jsx}"
   },
   "dependencies": {
     "bootstrap": "5.3.3",
@@ -21,7 +21,7 @@
   "devDependencies": {
     "@babel/preset-env": "7.25.9",
     "@babel/preset-react": "7.25.9",
-    "eslint": "8.57.1",
+    "eslint": "9.13.0",
     "eslint-plugin-react": "7.37.1"
   }
 }

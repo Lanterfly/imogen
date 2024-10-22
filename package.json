@@ -13,15 +13,14 @@
   ],
   "scripts": {
     "test": "jest",
-    "lint": "eslint --config eslint.config.json **/*.js"
+    "lint": "eslint --config eslint.config.js src/**/*.js"
   },
   "author": "Ethan Raymond",
   "repository": "https://github.com/Lanterfly/imogen",
   "devDependencies": {
-    "@babel/eslint-parser": "7.25.9",
     "@babel/preset-env": "7.25.8",
-    "eslint": "8.57.1",
-    "eslint-plugin-import": "2.31.0",
+    "eslint": "9.13.0",
+    "eslint-plugin-react": "7.37.1",
     "jest": "29.7.0"
   },
   "dependencies": {
