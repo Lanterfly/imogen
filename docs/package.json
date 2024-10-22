@@ -19,7 +19,9 @@
     "swagger-ui-react": "^5.17.14"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.25.9",
     "@babel/preset-env": "^7.25.9",
+    "@babel/preset-react": "^7.25.9",
     "eslint": "8.57.1",
     "eslint-plugin-react": "7.37.1"
   }
