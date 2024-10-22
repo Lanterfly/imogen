@@ -20,6 +20,8 @@ export const loadConfig = (options) => {
 const run = async (str, options) => {
 	const logger = pino();
 
+	const opts = options.opts();
+
 	logger.info("Starting Imogen...");
 
 	logger.info('Reading config file...');
