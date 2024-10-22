@@ -1,14 +1,14 @@
 import {requestListener} from "./server.js";
 
+/* eslint-disable no-undef */
+
 describe(
 	'Test Request Listener',
 	() => {
 		let httpStatus;
-		let responseValue;
 		beforeEach(
 			() => {
 				httpStatus = undefined;
-				responseValue = undefined;
 			},
 		);
 		const response = {
@@ -16,9 +16,7 @@ describe(
 			writeHead: (status) => {
 				httpStatus = status;
 			},
-			end: (str) => {
-				responseValue = str;
-			}
+			end: () => {}
 		};
 
 		test(
