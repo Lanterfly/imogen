@@ -44,7 +44,10 @@ export default function () {
                     jobs: [
                         {
                             'name': 'job-name',
-                            'time': '* * * * * *',
+                            schedule: {
+                                time: '* * * * * *',
+                                timezone: 'Etc/UTC',
+                            },
                             'command': 'timeout 5s',
                         }
                     ],
@@ -83,13 +86,19 @@ export default function () {
                     <td>The name of the job. Only letters, numbers, dashes, and underscores are allowed.</td>
                 </tr>
                 <tr>
-                    <td><code>jobs[#].time</code></td>
+                    <td><code>jobs[#].schedule.time</code></td>
                     <td>Yes</td>
                     <td>String</td>
                     <td>This is a cron style string specifying when the job will run. See <a
                         href="https://www.npmjs.com/package/node-schedule#cron-style-scheduling">this</a> for more
                         details.
                     </td>
+                </tr>
+                <tr>
+                    <td><code>jobs[#].schedule.timeZone</code></td>
+                    <td>No</td>
+                    <td>String</td>
+                    <td>One of the timezone specified in <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">here</a>.</td>
                 </tr>
                 <tr>
                     <td><code>jobs[#].command</code></td>
