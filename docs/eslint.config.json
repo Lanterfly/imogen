@@ -1,21 +1,14 @@
 {
-  "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module",
-    "allowImportExportEverywhere": true
+    "ecmaVersion": 12,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "parser": "@babel/eslint-parser",
+    "requireConfigFile": false,
+    "sourceType": "module"
   },
   "env": {
     "es6": true
-  },
-  "plugins": [
-    "import"
-  ],
-  "rules": {
-    "import/extensions": ["error", "always"],
-    "indent": ["error", "tab"],
-    "linebreak-style": "off",
-    "no-lonely-if": "off",
-    "no-tabs": "off"
   }
 }
