@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "lint": "eslint --config eslint.config.json **/*.js"
+    "lint": "eslint --config eslint.config.js src/**/*.js"
   },
   "author": "Ethan Raymond",
   "repository": "https://github.com/Lanterfly/imogen",
