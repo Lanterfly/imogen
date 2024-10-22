@@ -67,6 +67,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm install
+        working-directory: ./examples
       - run: timeout 5s npm run example-job && echo "Success"
         working-directory: ./examples
   app-run-example-job-and-server:
@@ -83,6 +84,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm install
+        working-directory: ./examples
       - run: timeout 5s npm run example-job-and-server && echo "Success"
         working-directory: ./examples
 
