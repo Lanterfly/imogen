@@ -114,6 +114,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm install
+        working-directory: ./docs
       - run: npm run build
         working-directory: ./docs
   docs-lint:
@@ -130,5 +131,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm install
+        working-directory: ./docs
       - run: npm run lint
         working-directory: ./docs
