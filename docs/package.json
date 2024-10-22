@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --config=eslint.config.json src/**/*.js src/**/*.jsx"
+    "lint": "eslint --config=eslint.config.js src/**/*.{js,jsx}"
   },
   "dependencies": {
     "bootstrap": "5.3.3",
