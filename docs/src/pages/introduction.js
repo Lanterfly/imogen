@@ -3,8 +3,6 @@ import { a11yLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import Container from "react-bootstrap/Container";
 import React from "react";
 
-const SAMPLE_JSON_CONFIG = "{\n    \"test\": \"test\"\n}";
-
 function renderCodeSample(json) {
     return (
         <SyntaxHighlighter

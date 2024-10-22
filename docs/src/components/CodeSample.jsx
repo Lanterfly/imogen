@@ -16,7 +16,7 @@ export default class CodeSample extends React.Component {
         axios.get(props.path).then(
             (response) => this.setState({ code: response.data }),
         ).catch(
-            (e) => this.setState({ code: 'Unable to load sample...' }),
+            () => this.setState({ code: 'Unable to load sample...' }),
         )
     }
 
