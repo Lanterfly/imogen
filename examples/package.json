@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "example-job": "imogen --config example-job.config.json | pino-pretty",
+    "example-job-and-server": "imogen --config example-job-and-server.config.json | pino-pretty"
+  },
+  "dependencies": {
+    "imogen": "file:../",
+    "pino-pretty": "11.3.0"
+  }
+}
