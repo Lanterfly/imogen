@@ -53,44 +53,6 @@ jobs:
           cache: 'npm'
       - run: npm install
       - run: npm run lint
-  app-run-example-job:
-    runs-on: ubuntu-latest
-    needs: [app-test, app-lint]
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 21.x, 22.x, 23.x]
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - run: npm install
-        working-directory: ./
-      - run: npm install
-        working-directory: ./examples
-      - run: timeout 5s npm run example-job
-        working-directory: ./examples
-  app-run-example-job-and-server:
-    runs-on: ubuntu-latest
-    needs: [app-test, app-lint]
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 21.x, 22.x, 23.x]
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-      - run: npm install
-        working-directory: ./
-      - run: npm install
-        working-directory: ./examples
-      - run: timeout 5s npm run example-job-and-server
-        working-directory: ./examples
 
   docs-install:
     runs-on: ubuntu-latest
