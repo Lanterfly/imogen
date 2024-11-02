@@ -51,44 +51,68 @@ A configuration is a json file with the following fields:
 | `server.bindHostname` | String  |                                                                                                                                                                                                                  | No           | `localhost` |
 | `server.bindPort`     | Integer |                                                                                                                                                                                                                  | No           | `16061`     |
 
-## Imogen Server API
+## Imogen Server API (Version 1.0)
 This is the API used to talk to an Imogen server instance.
 
-### API Version: 1.0
-
-**Schemes:** http
-
-#### isEnabled
-
-##### GET
-###### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ------ |
-| name |  | The name of the job. | Yes | string |
-
-###### Responses
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | successful operation |
-| 500 | unsuccessful operation |
-
-#### isRunning
-
-##### GET
-###### Parameters
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ------ |
-| name |  | The name of the job. | Yes | string |
-
-###### Responses
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | successful operation |
-| 500 | unsuccessful operation |
+<table>
+    <thead>
+        <tr>
+            <th>Endpoint</th>
+            <th>Description</th>
+            <th>URL Parameters</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>isEnabled</code></td>
+            <td>Returns a true or false value to state whether the given job is enabled or not.</td>
+            <td>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                            <th>Is Required?</th>
+                            <th>Default Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>name</code></td>
+                            <td>The name of the job.</td>
+                            <td>Yes</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td><code>isRunning</code></td>
+            <td>Returns a true or false value to state whether the given job is running or not.</td>
+            <td>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Description</th>
+                            <th>Is Required?</th>
+                            <th>Default Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>name</code></td>
+                            <td>The name of the job.</td>
+                            <td>Yes</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 ## Officially Supported Node Versions
 
