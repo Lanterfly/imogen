@@ -12,12 +12,6 @@ updates:
       time: "00:00"
       timezone: "America/Denver"
   - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/docs/" # Location of package manifests
-    schedule:
-      interval: "daily"
-      time: "00:00"
-      timezone: "America/Denver"
-  - package-ecosystem: "npm" # See documentation for possible values
     directory: "/examples/" # Location of package manifests
     schedule:
       interval: "daily"
