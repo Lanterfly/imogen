@@ -72,16 +72,12 @@ This is the API used to talk to an Imogen server instance.
                         <tr>
                             <th>Parameter</th>
                             <th>Description</th>
-                            <th>Is Required?</th>
-                            <th>Default Value</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><code>name</code></td>
                             <td>The name of the job.</td>
-                            <td>Yes</td>
-                            <td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -96,20 +92,21 @@ This is the API used to talk to an Imogen server instance.
                         <tr>
                             <th>Parameter</th>
                             <th>Description</th>
-                            <th>Is Required?</th>
-                            <th>Default Value</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><code>name</code></td>
                             <td>The name of the job.</td>
-                            <td>Yes</td>
-                            <td></td>
                         </tr>
                     </tbody>
                 </table>
             </td>
+        </tr>
+        <tr>
+            <td><code>getVersion</code></td>
+            <td>Returns the API version.</td>
+            <td></td>
         </tr>
     </tbody>
 </table>

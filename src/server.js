@@ -42,6 +42,9 @@ export const requestListener = (req, res, db) => {
 
 		res.writeHead(200);
 		res.end(JSON.stringify({ running }));
+	} else if (req.url.startsWith('/getVersion')) {
+		res.writeHead(200);
+		res.end(JSON.stringify({ version: '1.0' }));
 	} else {
 		res.writeHead(404);
 		res.end(JSON.stringify({ 'error': 'Unknown route.' }));
