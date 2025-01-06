@@ -23,7 +23,7 @@
     "jest": "29.7.0"
   },
   "dependencies": {
-    "better-sqlite3": "11.7.0",
+    "better-sqlite3": "11.7.2",
     "commander": "12.1.0",
     "lodash": "4.17.21",
     "luxon": "3.5.0",
