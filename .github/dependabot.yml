@@ -7,17 +7,29 @@ version: 2
 updates:
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/" # Location of package manifests
+    target-branch: "release/2.0"
     schedule:
       interval: "daily"
       time: "00:00"
       timezone: "America/Denver"
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/examples/" # Location of package manifests
+    target-branch: "release/2.0"
     schedule:
       interval: "daily"
       time: "00:00"
       timezone: "America/Denver"
-    groups:
-      all:
-        patterns:
-          - "*"
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/" # Location of package manifests
+    target-branch: "release/1.0"
+    schedule:
+      interval: "daily"
+      time: "00:00"
+      timezone: "America/Denver"
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/examples/" # Location of package manifests
+    target-branch: "release/1.0"
+    schedule:
+      interval: "daily"
+      time: "00:00"
+      timezone: "America/Denver"
