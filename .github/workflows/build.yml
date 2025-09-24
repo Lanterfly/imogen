@@ -12,6 +12,9 @@ on:
 jobs:
   app-install:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     strategy:
       matrix:
         node-version: [18.x, 20.x, 21.x, 22.x, 23.x]
@@ -25,6 +28,9 @@ jobs:
       - run: npm install
   app-test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     needs: [app-install]
     strategy:
       matrix:
@@ -40,6 +46,9 @@ jobs:
     - run: npm test
   app-lint:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     needs: [app-install]
     strategy:
       matrix:
