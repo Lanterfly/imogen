@@ -5,9 +5,9 @@ name: Build
 
 on:
   push:
-    branches: [ "main", "milestone/*" ]
+    branches: [ "main", "release/*" ]
   pull_request:
-    branches: [ "main", "milestone/*" ]
+    branches: [ "main", "release/*" ]
 
 jobs:
   app-install:
