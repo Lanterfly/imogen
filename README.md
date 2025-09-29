@@ -51,7 +51,7 @@ A configuration is a json file with the following fields:
 | `server.bindHostname` | String  |                                                                                                                                                                                                                  | No           | `localhost` |
 | `server.bindPort`     | Integer |                                                                                                                                                                                                                  | No           | `16061`     |
 
-## Imogen Server API (Version 1.0)
+## Imogen Server API (Version 2.0)
 This is the API used to talk to an Imogen server instance.
 
 <table>
