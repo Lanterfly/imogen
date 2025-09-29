@@ -113,8 +113,6 @@ This is the API used to talk to an Imogen server instance.
 
 ## Officially Supported Node Versions
 
-- 18.x
 - 20.x
-- 21.x
 - 22.x
-- 23.x
+- 24.x
